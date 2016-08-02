@@ -83,15 +83,20 @@ function clickDateBtns (){
 // PAGE 3 - Event Choices
 
 function createDomPage3(){
-    for(var i = 0; i <= 2; i++) {
-        var selectEvent = $('<div>').addClass('eventChoices').html('EVENT CHOICE' + i).click(clickeventChoices);
+    for(var i = 0; i < 6; i++) {
+        var selectEvent = $('<div>').addClass('eventChoices col-sm-4 col-xs-6 box' + i).text('EVENT CHOICE' + i).click(clickeventChoices);
         $('.main').append(selectEvent);
     }
 }
 
 function clickeventChoices(){
-    clearMain();
-    createDomPage4();
+    if($(this).hasClass('box5')){
+        clearMain();
+        createDomPage5();
+    } else {
+        clearMain();
+        createDomPage4();
+    }
 }
 
 
