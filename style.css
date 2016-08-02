@@ -1,3 +1,12 @@
+.dateChoices, .dateBtns, .eventChoices, .eventBtns, .finalBtns{
+    height: 300px;
+    background-color: #bcbcbc;
+    margin: 10px;
+}
+
+
+
+
 /*Page 1*/
 div{
     text-align: center;
@@ -9,45 +18,49 @@ div{
 
 
 /*Page 2*/
-.dateBtns {
-    height: 300px;
-    background-color: #bcbcbc;
-}
+/*.dateBtns {*/
+    /*height: 300px;*/
+    /*background-color: #bcbcbc;*/
+/*}*/
 
 
 
 
 
-/*Page 3*/
-.eventChoices {
-    display: inline-block;
-    width: 50vw;
-    height: 25vh;
-    background-color: purple;
-    color: white;
-    margin-top: 5vh;
-    text-align: center;;
-}
-
-
-
-
-
-
-/*Page 4*/
-.eventBtns{
-    background-color:lightblue;
-    border:1px red solid;
-    height:40vh;
-}
+/*!*Page 3*!*/
+/*.eventChoices {*/
+    /*display: inline-block;*/
+    /*width: 50vw;*/
+    /*height: 25vh;*/
+    /*background-color: purple;*/
+    /*color: white;*/
+    /*margin-top: 5vh;*/
+    /*text-align: center;;*/
+/*}*/
 
 
 
 
 
 
-/*Page 5*/
+/*!*Page 4*!*/
+/*.eventBtns{*/
+    /*background-color:lightblue;*/
+    /*border:1px red solid;*/
+    /*height:40vh;*/
+/*}*/
 
 
 
+
+
+
+/*!*Page 5*!*/
+
+
+/*.finalBtns {*/
+    /*height: 300px;*/
+    /*background-color: #bcbcbc;*/
+    /*margin: 10px;*/
+/*}*/
 

@@ -1,6 +1,9 @@
 // GLOBAL VARIABLES
 var myLocation;
 var genderSelect;
+var firstName;
+var lastName;
+var map;
 
 function LocationObj(){
     var myPosition = {
@@ -34,6 +37,13 @@ $(document).ready(function(){
     console.log(myLocation);
 
     createDomPage1();
+
+
+    //Added from Amina
+    getNames();
+    navigator.geolocation.getCurrentPosition(initialize);
+    getPersonImages();
+
 });
 
 function clearMain(){
@@ -45,7 +55,7 @@ function createDomPage1(){
     var choiceArray = ['Male', 'Female', 'Surprise Me'];
     for (var i = 0; i < choiceArray.length; i++){
         $('<div>').text(choiceArray[i])
-            .addClass('col-lg-4').css('border', '1px solid black').click(function(){selectedGender();}).appendTo('.main');
+            .addClass('col-sm-12 dateChoices').click(function(){selectedGender();}).appendTo('.main');
     }
 }
 
@@ -68,15 +78,52 @@ function createDomPage2 (){
 }
 
 
+//Getting random names function via ajax call
+function getNames() {
+    $.ajax({
+        method: 'get',
+        datatype: 'json',
+        url: 'http://uinames.com/api/',
+        success: function (result) {
+            firstName = result.name;
+            lastName = result.surname;
+
+            $(".name").html(firstName + ' ' + lastName);
+        },
+
+        error: function () {
+            console.log('call was unsuccessful');
+        }
+    })
+}
+//End of random name function
+
+//Getting images from Flickr function
+function getPersonImages() {
+    $.ajax({
+        url: 'https://api.flickr.com/services/rest',
+        method: 'get',
+        data: {
+            method: 'flickr.photos.search',
+            api_key: '4291af049e7b51ff411bc39565109ce6',
+            nojsoncallback: '1',
+            sort: 'relevance',
+            text: 'person',
+            format: 'json'
+        },
+
+        success: function (result) {
+            console.log(result);
+
+        }
+    })
+}
+
 function clickDateBtns (){
     clearMain();
     //save the img and name of clicked item
     createDomPage3();
 }
-
-
-
-
 
 
 
@@ -105,10 +152,6 @@ function createDomPage4(){
         $('.main').append(div);
     }
 }
-
-
-
-
 
 
 
@@ -153,6 +196,33 @@ function createDomPage4(){
 
 
 // PAGE 5
+
+
+function createDomPage5(){
+    for (var i=0; i<4; i++){
+        var finalDiv = $('<div>').addClass('finalBtns col-sm-6 col-xs-12').text(i+1);
+        $('.main').append(finalDiv);
+    }
+}
+
+
+
+
+
+//Getting google maps for the locations
+
+function initialize(location) {
+    console.log(location);
+
+    var mapOptions = {
+        center: new google.maps.LatLng(-34.397, 150.644),
+        zoom: 8,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+}
+//End of google maps function
 
 
 
