@@ -27,7 +27,13 @@
 
 
 /*Page 4*/
-
+.eventBtns{
+    position:relative;
+    display: inline-block;
+    height:45vh;
+    width : 30vw;
+    border:1px red solid;
+}
 
 
 
