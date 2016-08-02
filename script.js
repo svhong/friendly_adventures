@@ -31,7 +31,7 @@ $(document).ready(function(){
 });
 
 function clearMain(){
-    $('#main').children().remove();
+    $('.main').children().remove();
 }
 
 
@@ -61,11 +61,11 @@ function createDomPage2 (){
 }
 
 
-function clickDate (){
+function clickDateBtns (){
     clearMain();
+    //save the img and name of clicked item
     createDomPage3();
 }
-
 
 
 
