@@ -126,7 +126,6 @@ function clickDateBtns (){
 }
 
 
-
 // PAGE 3 - Event Choices
 
 function createDomPage3(){
@@ -149,7 +148,6 @@ function clickeventChoices(){
     }
 }
 
-
 // PAGE 4  -  Events Buttons
 function createDomPage4(){
     for(var i = 0; i < 6 ; i++){
@@ -160,11 +158,6 @@ function createDomPage4(){
         $('.main').append(div);
     }
 }
-
-
-
-
-
 
 
 // Dinner
@@ -212,9 +205,6 @@ function createDomPage5(){
         $('.main').append(finalDiv);
     }
 }
-
-
-
 
 
 //Getting google maps for the locations
