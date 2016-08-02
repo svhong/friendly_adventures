@@ -86,7 +86,7 @@ function createDomPage3(){
 
 
 // PAGE 4  -  Events Buttons
-function createEventBtns(){
+function createDomPage4(){
     clearMain();
     for(var i = 0; i < 6 ; i++){
         var div = $('<div>').addClass('eventBtns');
