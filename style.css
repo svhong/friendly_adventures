@@ -7,7 +7,11 @@
 
 
 /*Page 2*/
-.dateBtns
+.dateBtns {
+    height: 300px;
+    background-color: #bcbcbc;
+
+}
 
 
 
