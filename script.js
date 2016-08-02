@@ -61,16 +61,17 @@ function createDomPage1(){
 function createDomPage2 (){
     for (var i=0; i < 6; i++){
         var dateDiv = $('<div>').addClass('dateBtns col-sm-4 col-xs-6').text(i+1);
+        $(dateDiv).click(clickDateBtns);
         $('.main').append(dateDiv);
     }
 }
 
 
-function clickDate (){
+function clickDateBtns (){
     clearMain();
+    //save the img and name of clicked item
     createDomPage3();
 }
-
 
 
 
@@ -81,16 +82,29 @@ function clickDate (){
 // PAGE 3 - Event Choices
 
 function createDomPage3(){
-    clearMain();
     for(var i = 0; i <= 2; i++) {
-        var selectEvent = $('<div>').addClass('eventChoices').html('EVENT CHOICE' + i);
+        var selectEvent = $('<div>').addClass('eventChoices').html('EVENT CHOICE' + i).click(clickeventChoices);
         $('.main').append(selectEvent);
     }
 }
 
+function clickeventChoices(){
+    clearMain();
+    createDomPage4();
+}
 
 
 // PAGE 4  -  Events Buttons
+function createDomPage4(){
+    for(var i = 0; i < 6 ; i++){
+        var div = $('<div>').addClass('eventBtns col-xs-6 col-sm-4 col-md-4 col-lg-4').click(function(){
+            clearMain();
+            createDomPage5();
+        });
+        $('.main').append(div);
+    }
+}
+
 
 
 

@@ -12,7 +12,21 @@ div{
 .dateBtns {
     height: 300px;
     background-color: #bcbcbc;
+}
 
+
+
+
+
+/*Page 3*/
+.eventChoices {
+    display: inline-block;
+    width: 50vw;
+    height: 25vh;
+    background-color: purple;
+    color: white;
+    margin-top: 5vh;
+    text-align: center;;
 }
 
 
@@ -20,16 +34,12 @@ div{
 
 
 
-/*Page 3*/
-
-
-
-
-
-
-
 /*Page 4*/
-
+.eventBtns{
+    background-color:lightblue;
+    border:1px red solid;
+    height:40vh;
+}
 
 
 
