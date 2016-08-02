@@ -6,20 +6,20 @@ function LocationObj(){
     var myPosition = {
         lat: null,
         long: null,
-        success: null
+        status: null
     };
     var nav = navigator.geolocation;
     nav.getCurrentPosition(success, failure);
     function success(position){
         myPosition.lat = position.coords.latitude;
         myPosition.long = position.coords.longitude;
-        myPosition.success = true;
+        myPosition.status = true;
     }
     function failure(error){
         //defaults to learningfuze location if it fails
         myPosition.lat = 33.6362183;
         myPosition.lang = -117.7394721;
-        myPosition.success = false;
+        myPosition.status = false;
         myPosition.error = error;
     }
     this.getLocation = function(){
@@ -29,15 +29,34 @@ function LocationObj(){
 //DOCUMENT READY
 $(document).ready(function(){
     //create location object
-    var locObj = new LocationObj();
-    myLocation = locObj.getLocation();
-    console.log(myLocation);
-
+    checkAddress();
     createDomPage1();
 });
 
 function clearMain(){
     $('.main').children().remove();
+}
+function checkAddress(){
+    var locObj = new LocationObj();
+    myLocation = locObj.getLocation();
+
+    console.log(myLocation);
+    console.log(myLocation.lat);
+    console.log(myLocation.long);
+    console.log(myLocation.status);
+
+    if (!myLocation.success){
+        createAddressBar();
+    }
+}
+
+function createAddressBar(){
+    $('<input>').attr({
+        type: 'text',
+        placeholder: 'Enter Your Location',
+        class: 'col-lg-6 col-lg-offset-3'
+    }).appendTo('.main');
+
 }
 
 // PAGE 1 - Date Choice
