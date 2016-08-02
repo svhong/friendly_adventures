@@ -1,41 +1,42 @@
 // GLOBAL VARIABLES
-var myLocation;
+var locObj;
 var genderSelect;
 var firstName;
 var lastName;
 var map;
 
-function LocationObj(){
+function LocationObj(successCallback, errorCallback){
+    this.success = successCallback;
+    this.error = errorCallback;
     var myPosition = {
         lat: null,
         long: null,
-        success: null
+        status: null
     };
     var nav = navigator.geolocation;
-    nav.getCurrentPosition(success, failure);
+
     function success(position){
         myPosition.lat = position.coords.latitude;
         myPosition.long = position.coords.longitude;
-        myPosition.success = true;
+        myPosition.status = true;
+        this.success();
     }
     function failure(error){
         //defaults to learningfuze location if it fails
         myPosition.lat = 33.6362183;
         myPosition.lang = -117.7394721;
-        myPosition.success = false;
+        myPosition.status = false;
         myPosition.error = error;
     }
     this.getLocation = function(){
         return myPosition;
     }
+    nav.getCurrentPosition(success.bind(this), failure);
 }
 //DOCUMENT READY
 $(document).ready(function(){
     //create location object
-    var locObj = new LocationObj();
-    myLocation = locObj.getLocation();
-    console.log(myLocation);
-
+    getAddress()
     createDomPage1();
 
 
@@ -49,6 +50,26 @@ $(document).ready(function(){
 function clearMain(){
     $('.main').children().remove();
 }
+function getAddress(){
+    locObj = new LocationObj(checkAddress, null);
+
+}
+function checkAddress(){
+    console.log(locObj.getLocation());
+    
+    if (!locObj.success){
+        createAddressBar();
+    }
+}
+
+function createAddressBar(){
+    $('<input>').attr({
+        type: 'text',
+        placeholder: 'Enter Your Location',
+        class: 'col-lg-6 col-lg-offset-3'
+    }).appendTo('.main');
+
+}
 
 // PAGE 1 - Date Choice
 function createDomPage1(){
@@ -61,6 +82,11 @@ function createDomPage1(){
 
 function selectedGender() {
     genderSelect = $(this).text();
+    
+    if (genderSelect === 'Surprise Me'){
+        createDomPage5();
+    }
+    
     clearMain();
     createDomPage2();
     console.log(genderSelect);
