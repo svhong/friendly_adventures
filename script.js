@@ -45,7 +45,12 @@
 
 
 // PAGE 4  -  Events Buttons
-
+function createEventBtns(){
+    for(var i = 0; i < 6 ; i++){
+        var div = $('<div>');
+        $('.main').append(div);
+    }
+}
 
 
 
