@@ -1,4 +1,4 @@
-.dateChoices, .dateBtns, .eventChoices, .eventBtns, .finalBtns{
+.dateChoices, .eventChoices, .eventBtns, .finalBtns{
     height: 300px;
     background-color: #bcbcbc;
     text-align: center;
@@ -11,9 +11,14 @@ div{
 
 /*Page 2*/
 .dateBtns {
-
+    height: 40vh;
 }
-
+.dateContainers {
+    height: 90%;
+    background-color: skyblue;
+    text-align: center;
+    padding: 15px, 0,
+}
 /*Page 3*/
 .eventChoices {
 
