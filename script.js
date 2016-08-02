@@ -86,6 +86,9 @@ function createDomPage3(){
     for(var i = 0; i < 6; i++) {
         var selectEvent = $('<div>').addClass('eventChoices col-sm-4 col-xs-6 box' + i).text('EVENT CHOICE' + i).click(clickeventChoices);
         $('.main').append(selectEvent);
+        if ($('.eventChoices').hasClass('box5')){
+            $('.box5').text('SURPRISE ME!')
+        }
     }
 }
 
