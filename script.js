@@ -1,5 +1,6 @@
 // GLOBAL VARIABLES
 var myLocation;
+var genderSelect;
 
 function LocationObj(){
     var myPosition = {
@@ -15,6 +16,9 @@ function LocationObj(){
         myPosition.success = true;
     }
     function failure(error){
+        //defaults to learningfuze location if it fails
+        myPosition.lat = 33.6362183;
+        myPosition.lang = -117.7394721;
         myPosition.success = false;
         myPosition.error = error;
     }
@@ -29,27 +33,27 @@ $(document).ready(function(){
     myLocation = locObj.getLocation();
     console.log(myLocation);
 
+    createDomPage1();
 });
 
 function clearMain(){
-    $('#main').children().remove();
+    $('.main').children().remove();
 }
 
-
-
-
-
 // PAGE 1 - Date Choice
-
-
-
-
-
-
-
-
-
-
+function createDomPage1(){
+    var choiceArray = ['Male', 'Female', 'Surprise Me'];
+    for (var i = 0; i < choiceArray.length; i++){
+        $('<div>').text(choiceArray[i])
+            .addClass('col-lg-4').css('border', '1px solid black').click(function(){
+                genderSelect = $(this).text();
+                clearMain();
+                createDomPage2();
+            console.log(genderSelect);
+            })
+            .appendTo('.main');
+    }
+}
 
 
 // PAGE 2 - Date Buttons
