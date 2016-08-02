@@ -45,14 +45,15 @@ function createDomPage1(){
     var choiceArray = ['Male', 'Female', 'Surprise Me'];
     for (var i = 0; i < choiceArray.length; i++){
         $('<div>').text(choiceArray[i])
-            .addClass('col-lg-4').css('border', '1px solid black').click(function(){
-                genderSelect = $(this).text();
-                clearMain();
-                createDomPage2();
-            console.log(genderSelect);
-            })
-            .appendTo('.main');
+            .addClass('col-lg-4').css('border', '1px solid black').click(function(){selectedGender();}).appendTo('.main');
     }
+}
+
+function selectedGender() {
+    genderSelect = $(this).text();
+    clearMain();
+    createDomPage2();
+    console.log(genderSelect);
 }
 
 
