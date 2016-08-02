@@ -56,6 +56,7 @@ function clearMain(){
 function createDomPage2 (){
     for (var i=0; i < 6; i++){
         var dateDiv = $('<div>').addClass('dateBtns col-sm-4 col-xs-6').text(i+1);
+        $(dateDiv).click(clickDateBtns);
         $('.main').append(dateDiv);
     }
 }
