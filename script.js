@@ -77,7 +77,7 @@ function clickDateBtns (){
 
 function createDomPage3(){
     for(var i = 0; i <= 2; i++) {
-        var selectEvent = $('<div>').addClass('eventChoices').html('EVENT CHOICE' + i);
+        var selectEvent = $('<div>').addClass('eventChoices').html('EVENT CHOICE' + i).click(clickeventChoices);
         $('.main').append(selectEvent);
     }
 }
