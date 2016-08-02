@@ -15,6 +15,7 @@ function LocationObj(){
         myPosition.long = position.coords.longitude;
         myPosition.success = true;
     }
+    
     function failure(error){
         //defaults to learningfuze location if it fails
         myPosition.lat = 33.6362183;
