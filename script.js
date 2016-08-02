@@ -1,19 +1,22 @@
 // GLOBAL VARIABLES
-var myLocation;
+var locObj;
 var genderSelect;
 
-function LocationObj(){
+function LocationObj(successCallback, errorCallback){
+    this.success = successCallback;
+    this.error = errorCallback;
     var myPosition = {
         lat: null,
         long: null,
         status: null
     };
     var nav = navigator.geolocation;
-    nav.getCurrentPosition(success, failure);
+
     function success(position){
         myPosition.lat = position.coords.latitude;
         myPosition.long = position.coords.longitude;
         myPosition.status = true;
+        this.success();
     }
     function failure(error){
         //defaults to learningfuze location if it fails
@@ -25,27 +28,26 @@ function LocationObj(){
     this.getLocation = function(){
         return myPosition;
     }
+    nav.getCurrentPosition(success.bind(this), failure);
 }
 //DOCUMENT READY
 $(document).ready(function(){
     //create location object
-    checkAddress();
+    getAddress()
     createDomPage1();
 });
 
 function clearMain(){
     $('.main').children().remove();
 }
+function getAddress(){
+    locObj = new LocationObj(checkAddress, null);
+
+}
 function checkAddress(){
-    var locObj = new LocationObj();
-    myLocation = locObj.getLocation();
-
-    console.log(myLocation);
-    console.log(myLocation.lat);
-    console.log(myLocation.long);
-    console.log(myLocation.status);
-
-    if (!myLocation.success){
+    console.log(locObj.getLocation());
+    
+    if (!locObj.success){
         createAddressBar();
     }
 }
