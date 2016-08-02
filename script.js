@@ -89,6 +89,16 @@ function clickeventChoices(){
 
 
 // PAGE 4  -  Events Buttons
+function createDomPage4(){
+    for(var i = 0; i < 6 ; i++){
+        var div = $('<div>').addClass('eventBtns col-xs-6 col-sm-4 col-md-4 col-lg-4').click(function(){
+            clearMain();
+            createDomPage5();
+        });
+        $('.main').append(div);
+    }
+}
+
 
 
 
