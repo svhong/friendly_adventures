@@ -1,43 +1,31 @@
-/*Page 1*/
-div{
+.dateChoices, .dateBtns, .eventChoices, .eventBtns, .finalBtns{
+    height: 300px;
+    background-color: #bcbcbc;
     text-align: center;
 }
 
-
-
-
-
-
-/*Page 2*/
-.dateBtns {
-    height: 300px;
-    background-color: #bcbcbc;
+/*Page 1*/
+div{
 
 }
 
+/*Page 2*/
+.dateBtns {
 
-
-
-
+}
 
 /*Page 3*/
+.eventChoices {
 
-
-
-
-
-
+}
 
 /*Page 4*/
+.eventBtns{
 
-
-
-
-
-
+}
 
 /*Page 5*/
+.finalBtns {
 
-
-
+}
 
