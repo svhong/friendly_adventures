@@ -13,7 +13,7 @@ div{
 .dateBtns {
     height: 40vh;
 }
-.dateContainers {
+.dateContainers , .finalDivContainer{
     height: 90%;
     background-color: skyblue;
     text-align: center;

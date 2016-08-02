@@ -36,7 +36,7 @@ function LocationObj(successCallback, errorCallback){
 //DOCUMENT READY
 $(document).ready(function(){
     //create location object
-    getAddress()
+    getAddress();
     createDomPage1();
 
 
@@ -75,8 +75,10 @@ function createAddressBar(){
 function createDomPage1(){
     var choiceArray = ['Male', 'Female', 'Surprise Me'];
     for (var i = 0; i < choiceArray.length; i++){
-        $('<div>').text(choiceArray[i])
-            .addClass('col-sm-12 dateChoices').click(function(){selectedGender();}).appendTo('.main');
+        var dateChoices = $('<div>').addClass('col-sm-12 dateChoices').click(selectedGender);
+        $('.main').append(dateChoices);
+        var dateChoicesContainer = $('<div>').addClass('dateChoicesContainer').text(choiceArray[i]);
+        $(dateChoices).append(dateChoicesContainer);
     }
 }
 
@@ -229,8 +231,10 @@ function createDomPage4(){
 
 function createDomPage5(){
     for (var i=0; i<4; i++){
-        var finalDiv = $('<div>').addClass('finalBtns col-sm-6 col-xs-12').text(i+1);
+        var finalDiv = $('<div>').addClass('finalBtns col-sm-6 col-xs-12')
         $('.main').append(finalDiv);
+        var finalDivContainer = $('<div>').addClass('finalDivContainer').text(i+1);
+        $(finalDiv).append(finalDivContainer);
     }
 }
 
