@@ -23,8 +23,18 @@
 
 // PAGE 2 - Date Buttons
 
+function createDomPage2 (){
+    for (var i=0; i <= 6; i++){
+        var dateDiv = $('<div>').addClass(dateBtns).text(i+1);
+        $('.main').append(dateDiv);
+    }
+}
 
 
+function clickDate (){
+    clearMain();
+    createDomPage3();
+}
 
 
 
