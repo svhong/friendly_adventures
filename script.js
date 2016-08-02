@@ -51,6 +51,11 @@ function createDomPage1(){
 
 function selectedGender() {
     genderSelect = $(this).text();
+    
+    if (genderSelect === 'Surprise Me'){
+        createDomPage5();
+    }
+    
     clearMain();
     createDomPage2();
     console.log(genderSelect);
