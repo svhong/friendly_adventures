@@ -54,7 +54,6 @@ function clickDate (){
 
 
 
-
 // PAGE 4  -  Events Buttons
 
 
