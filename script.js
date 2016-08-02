@@ -22,6 +22,7 @@ function LocationObj(){
         return myPosition;
     }
 }
+//DOCUMENT READY
 $(document).ready(function(){
     //create location object
     var locObj = new LocationObj();
