@@ -1,64 +1,31 @@
 .dateChoices, .dateBtns, .eventChoices, .eventBtns, .finalBtns{
     height: 300px;
     background-color: #bcbcbc;
-    margin: 10px;
+    text-align: center;
 }
-
-
-
 
 /*Page 1*/
 div{
-    text-align: center;
+
 }
 
-
-
-
-
-
 /*Page 2*/
-/*.dateBtns {*/
-    /*height: 300px;*/
-    /*background-color: #bcbcbc;*/
-/*}*/
+.dateBtns {
 
-
-
-
+}
 
 /*Page 3*/
 .eventChoices {
-    display: inline-block;
-    height: 300px;
-    background-color: purple;
-    color: white;
-    text-align: center;
+
 }
 
+/*Page 4*/
+.eventBtns{
 
+}
 
+/*Page 5*/
+.finalBtns {
 
-
-
-/*!*Page 4*!*/
-/*.eventBtns{*/
-    /*background-color:lightblue;*/
-    /*border:1px red solid;*/
-    /*height:40vh;*/
-/*}*/
-
-
-
-
-
-
-/*!*Page 5*!*/
-
-
-/*.finalBtns {*/
-    /*height: 300px;*/
-    /*background-color: #bcbcbc;*/
-    /*margin: 10px;*/
-/*}*/
+}
 
