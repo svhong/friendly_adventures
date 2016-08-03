@@ -280,15 +280,15 @@ function initMap(keyword) {
     function callback(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
             object_list = results;
-            console.log("obejct_list : ",object_list);//this gives objects of searched places in an array (from line 37 - 41 and calls this function);
+            clearMain();
+            createDomPage4(object_list);
         }
     }
-    clearMain();
-    createDomPage4();
 }
 
 // PAGE 4  -  Events Buttons
-function createDomPage4(){
+function createDomPage4(eventList){
+    console.log('redefinedList : ',eventList);
     for(var i = 0; i < 6 ; i++){
         var eventDiv = $('<div>').addClass('eventBtns col-sm-4 col-xs-6');
         $(eventDiv).click(clickEventBtns);
