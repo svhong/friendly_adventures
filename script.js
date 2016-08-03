@@ -105,9 +105,12 @@ function createDomPage2 (){
         var dateContainer = $('<div>').addClass('dateContainers').text(i+1).attr('id', 'second' +i);
         $(dateDiv).append(dateContainer);
 
-        getPersonImages();
-
+        (function(){
+            var id = 'second' + i;
+            getPersonImages(id);
+        })()
     }
+
 }
 
 
@@ -132,7 +135,7 @@ function getNames() {
 //End of random name function
 
 //Getting images from Flickr function
-function getPersonImages() {
+function getPersonImages(id) {
     $.ajax({
         url: 'https://api.flickr.com/services/rest',
         method: 'get',
@@ -162,12 +165,8 @@ function getPersonImages() {
 
             var male_images = $('<img>').attr('src', image_src).attr('width', 300).attr('height', 200);
 
-            $("#second0").append(male_images);
-            $("#second1").append(male_images);
-            $("#second2").append(male_images);
-            $("#second3").append(male_images);
-            $("#second4").append(male_images);
-            $("#second5").append(male_images);
+
+            $("#" + id).append(male_images);
 
 
         }
