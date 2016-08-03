@@ -34,6 +34,7 @@ function LocationObj(successCallback, errorCallback){
     }
     nav.getCurrentPosition(success.bind(this), failure);
 }
+function addrressLookup(){}
 //DOCUMENT READY
 $(document).ready(function(){
     //create location object
