@@ -203,7 +203,33 @@ function clickeventChoices(){
         createDomPage5();
     } else {
         clearMain();
+        initMap();
         createDomPage4();
+    }
+}
+
+var map2;
+var infowindow2;
+var object_list;
+
+function initMap() {
+    var mapsize = $('<div>').attr("id", 'map').appendTo('.main');
+    map2 = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 33.6839, lng: -117.7947},
+        zoom: 12
+    });
+    infowindow2 = new google.maps.InfoWindow();//
+    var service = new google.maps.places.PlacesService(map2); //constructor
+    service.nearbySearch({
+        location: {lat: 33.6839, lng: -117.7947}, //use brian's plug in location object
+        radius: 7000,//radius in meters
+        type: ['restaurant'],//variables for this keyword. use parameter
+    }, callback);
+    function callback(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            object_list = results;
+            console.log("obejct_list : ",object_list);//this gives objects of searched places in an array (from line 37 - 41 and calls this function);
+        }
     }
 }
 
