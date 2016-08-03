@@ -105,9 +105,12 @@ function createDomPage2 (){
         var dateContainer = $('<div>').addClass('dateContainers').text('date ' + (i+1)).attr('id', 'second' +i);
         $(dateDiv).append(dateContainer);
 
-        getPersonImages();
-
+        (function(){
+            var id = 'second' + i;
+            getPersonImages(id);
+        })()
     }
+
 }
 
 
@@ -132,7 +135,7 @@ function getNames() {
 //End of random name function
 
 //Getting images from Flickr function
-function getPersonImages() {
+function getPersonImages(id) {
     $.ajax({
         url: 'https://api.flickr.com/services/rest',
         method: 'get',
@@ -162,12 +165,8 @@ function getPersonImages() {
 
             var male_images = $('<img>').attr('src', image_src).attr('width', 300).attr('height', 200);
 
-            $("#second0").append(male_images);
-            $("#second1").append(male_images);
-            $("#second2").append(male_images);
-            $("#second3").append(male_images);
-            $("#second4").append(male_images);
-            $("#second5").append(male_images);
+
+            $("#" + id).append(male_images);
 
 
         }
@@ -188,7 +187,7 @@ function clickDateBtns (){
 function createDomPage3(){
     for(var i = 0; i < 6; i++) {
 
-        var eventDiv = $('<div>').addClass('eventBtns col-sm-4 col-xs-6').click(clickeventChoices);
+        var eventDiv = $('<div>').addClass('eventBtns col-sm-4 col-xs-6 outerbox' + i).click(clickeventChoices);
         var eventContainer = $('<div>').addClass('eventContainers box' + i).text(i + 1);
         eventDiv.append(eventContainer).appendTo($('.main'));
         if ($('.eventContainers').hasClass('box5')){
@@ -198,7 +197,7 @@ function createDomPage3(){
 }
 
 function clickeventChoices(){
-    if($(this).hasClass('box5')){
+    if($(this).hasClass('outerbox5')){
         clearMain();
         createDomPage5();
     } else {
@@ -291,7 +290,7 @@ function clickEventBtns () {
 
 function createDomPage5(){
     for (var i=0; i<4; i++){
-        var finalDiv = $('<div>').addClass('finalBtns col-sm-6 col-xs-12')
+        var finalDiv = $('<div>').addClass('finalBtns col-xs-6 col-sm-6');
         $('.main').append(finalDiv);
         var finalDivContainer = $('<div>').addClass('finalDivContainer').text(i+1).attr('id', 'final_' +i);
         $(finalDiv).append(finalDivContainer);
