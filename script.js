@@ -43,7 +43,7 @@ $(document).ready(function(){
 
     //Added from Amina
     getNames();
-    navigator.geolocation.getCurrentPosition(initialize);
+
     getPersonImages();
 
 });
@@ -239,8 +239,9 @@ function createDomPage5(){
     for (var i=0; i<4; i++){
         var finalDiv = $('<div>').addClass('finalBtns col-sm-6 col-xs-12')
         $('.main').append(finalDiv);
-        var finalDivContainer = $('<div>').addClass('finalDivContainer').text(i+1);
+        var finalDivContainer = $('<div>').addClass('finalDivContainer').text(i+1).attr('id', 'final_' +i);
         $(finalDiv).append(finalDivContainer);
+        navigator.geolocation.getCurrentPosition(initialize);
     }
 }
 
@@ -256,7 +257,7 @@ function initialize(location) {
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
-    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    map = new google.maps.Map(document.getElementById("final_2"), mapOptions);
 }
 
 //End of google maps function
