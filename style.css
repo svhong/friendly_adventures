@@ -1,40 +1,30 @@
 body {
-    background-color: #b71c1c;
-}
-.eventChoices {
-    height: 300px;
-    background-color: #bcbcbc;
-    text-align: center;
+    background-color: #ffcdd2;
 }
 
 .header {
     text-align: center;
+    background-color: #b71c1c;
+    color: #ffcdd2;
+    box-shadow: 0 10px 6px -6px gray;
 }
 
 
 /*Page 1*/
-div{
-
-}
 
 /*Page 2*/
 .dateBtns, .finalBtns, .dateChoices, .eventBtns {
-    height: 40vh;
+    height: 20vh;
 }
 
-.dateChoicesContainer, .dateContainers , .finalDivContainer, .dateContainers, .eventContainers {
+.dateChoicesContainer, .dateContainers , .finalDivContainer, .eventContainers, .eventChoices {
     height: 90%;
-    background-color: #ffcdd2;
+    background-color: #b71c1c;
     text-align: center;
     padding: 15px, 0;
+    box-shadow: 0 10px 6px -6px gray;
 }
 /*Page 3*/
-.eventChoices .eventListContainer{
-    height: 90%;
-    background-color: #ffcdd2;
-    text-align: center;
-    padding: 15px, 0,
-}
 
 /*Page 4*/
 .eventBtns{
@@ -50,3 +40,8 @@ div{
     /*width: 300px;*/
 /*}*/
 
+@media only screen and (min-width: 992px){
+    .dateBtns, .finalBtns, .dateChoices, .eventBtns {
+        height: 40vh;
+    }
+}
