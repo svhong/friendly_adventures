@@ -4,6 +4,7 @@ var genderSelect;
 var firstName;
 var lastName;
 var map;
+var myAddressString = '';
 
 function LocationObj(successCallback, errorCallback){
     this.success = successCallback;
@@ -24,27 +25,24 @@ function LocationObj(successCallback, errorCallback){
     
     function failure(error){
         //defaults to learningfuze location if it fails
-        myPosition.lat = 33.6362183;
-        myPosition.lang = -117.7394721;
-        myPosition.status = false;
-        myPosition.error = error;
+        // myPosition.lat = 33.6362183;
+        // myPosition.lang = -117.7394721;
+        // myPosition.status = false;
+        // myPosition.error = error;
     }
     this.getLocation = function(){
         return myPosition;
     }
     nav.getCurrentPosition(success.bind(this), failure);
 }
-function addrressLookup(){}
+
 //DOCUMENT READY
 $(document).ready(function(){
     //create location object
     getAddress();
     createDomPage1();
-
-
     //Added from Amina
     getNames();
-
     getPersonImages();
 
 });
@@ -54,12 +52,13 @@ function clearMain(){
 }
 function getAddress(){
     locObj = new LocationObj(checkAddress, null);
-
 }
 function checkAddress(){
+
     console.log(locObj.getLocation());
-    
-    if (!locObj.success){
+    var locTest = locObj.getLocation();
+
+    if (locTest.status === false ){
         createAddressBar();
     }
 }
@@ -68,9 +67,9 @@ function createAddressBar(){
     $('<input>').attr({
         type: 'text',
         placeholder: 'Enter Your Location',
-        class: 'col-lg-6 col-lg-offset-3'
+        class: 'form-control',
+        id : 'address'
     }).appendTo('.main');
-
 }
 
 // PAGE 1 - Date Choice
@@ -88,6 +87,7 @@ function createDomPage1(){
 
 function selectedGender() {
     genderSelect = $(this).text();
+    setAddress();
     
     if (genderSelect === 'Surprise Me'){
         createDomPage5();
@@ -98,6 +98,48 @@ function selectedGender() {
     console.log(genderSelect);
 }
 
+function setAddress(){
+    myAddressString = $(':input').val();
+    console.log(myAddressString);
+
+    if(myAddressString !== ''){
+        //get geocode
+        console.log('get geocode');
+    }else{
+        //default location
+        myAddressString = '9080 Irvine Center Dr';
+    }
+}
+
+function geocodeAddress(){
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('main'), {
+            zoom: 8,
+            center: {lat: -34.397, lng: 150.644}
+        });
+        var geocoder = new google.maps.Geocoder();
+
+        document.getElementById('submit').addEventListener('click', function() {
+            geocodeAddress(geocoder, map);
+        });
+    }
+
+    function geocodeAddress(geocoder, resultsMap) {
+        var address = document.getElementById('address').value;
+        geocoder.geocode({'address': address}, function(results, status) {
+            if (status === 'OK') {
+                resultsMap.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: resultsMap,
+                    position: results[0].geometry.location
+                });
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+            }
+        });
+    }
+
+}
 
 // PAGE 2 - Date Buttons
 
