@@ -162,7 +162,7 @@ function getNames(id) {
         amount: 6
     };
     nameSelect = genderSelect.toLowerCase();
-    if (nameSelect != 'Shiba') {
+    if (nameSelect != 'shiba') {
         dataObj.gender = nameSelect;
     }
     $.ajax({
@@ -189,18 +189,23 @@ function getNames(id) {
 
 //Getting images from Flickr function
 function getPersonImages() {
+    var dataObj = {
+        method: 'flickr.photos.search',
+        api_key: '4291af049e7b51ff411bc39565109ce6',
+        nojsoncallback: '1',
+        sort: 'relevance',
+        format: 'json',
+        cache: false
+    };
+    if (genderSelect != 'Shiba') {
+        dataObj.text = genderSelect + " person closeup";
+    } else{
+        dataObj.text = genderSelect + " dog closeup";
+    }
     $.ajax({
         url: 'https://api.flickr.com/services/rest',
         method: 'get',
-        data: {
-            method: 'flickr.photos.search',
-            api_key: '4291af049e7b51ff411bc39565109ce6',
-            nojsoncallback: '1',
-            text: genderSelect,
-            sort: 'relevance',
-            format: 'json',
-            cache: false
-        },
+        data: dataObj,
 
         success: function (result) {
             console.log(result);
