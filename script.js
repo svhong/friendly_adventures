@@ -75,7 +75,7 @@ function createAddressBar(){
 function createDomPage1(){
     var choiceArray = ['Male', 'Female', 'Surprise Me'];
     for (var i = 0; i < choiceArray.length; i++){
-        var dateChoices = $('<div>').addClass('col-sm-12 dateChoices').click(selectedGender);
+        var dateChoices = $('<div>').addClass('col-sm-4 dateChoices').click(selectedGender);
         $('.main').append(dateChoices);
         var dateChoicesContainer = $('<div>').addClass('dateChoicesContainer').text(choiceArray[i]);
         $(dateChoices).append(dateChoicesContainer);
@@ -181,14 +181,19 @@ function clickeventChoices(){
 // PAGE 4  -  Events Buttons
 function createDomPage4(){
     for(var i = 0; i < 6 ; i++){
-        var div = $('<div>').addClass('eventBtns col-xs-6 col-sm-4 col-md-4 col-lg-4').click(function(){
-            clearMain();
-            createDomPage5();
-        });
-        $('.main').append(div);
+        var eventDiv = $('<div>').addClass('eventBtns col-sm-4 col-xs-6');
+        $(eventDiv).click(clickEventBtns);
+        $('.main').append(eventDiv);
+        var eventContainer = $('<div>').addClass('dateContainers').text(i+1);
+        $(eventDiv).append(eventContainer);
     }
 }
 
+function clickEventBtns () {
+    clearMain();
+    //save the img and name of clicked item
+    createDomPage5();
+}
 
 // Dinner
 
@@ -252,6 +257,7 @@ function initialize(location) {
 
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 }
+
 //End of google maps function
 
 
