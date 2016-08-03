@@ -266,14 +266,15 @@ var object_list;
 
 function initMap(keyword) {
     $('<div>').attr("id", 'map').appendTo('.main');
+    var myLocation = locObj.getLocation();
     map2 = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 33.6839, lng: -117.7947},
+        center: {lat: myLocation.lat, lng: myLocation.long},
         zoom: 12
     });
     infowindow2 = new google.maps.InfoWindow();//
     var service = new google.maps.places.PlacesService(map2); //constructor
     service.nearbySearch({
-        location: {lat: 33.6839, lng: -117.7947}, //use brian's plug in location object
+        location: {lat: myLocation.lat, lng: myLocation.long}, //use brian's plug in location object
         radius: 7000,//radius in meters
         type: [keyword],//variables for this keyword. use parameter
     }, callback);
