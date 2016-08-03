@@ -24,11 +24,11 @@ function LocationObj(successCallback, errorCallback){
     }
     
     function failure(error){
-        //defaults to learningfuze location if it fails
-        // myPosition.lat = 33.6362183;
-        // myPosition.lang = -117.7394721;
-        // myPosition.status = false;
-        // myPosition.error = error;
+        // defaults to learningfuze location if it fails
+        myPosition.lat = 33.6362183;
+        myPosition.lang = -117.7394721;
+        myPosition.status = false;
+        myPosition.error = error;
     }
     this.getLocation = function(){
         return myPosition;
