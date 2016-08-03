@@ -187,7 +187,7 @@ function clickDateBtns (){
 function createDomPage3(){
     for(var i = 0; i < 6; i++) {
 
-        var eventDiv = $('<div>').addClass('eventBtns col-sm-4 col-xs-6').click(clickeventChoices);
+        var eventDiv = $('<div>').addClass('eventBtns col-sm-4 col-xs-6 outerbox' + i).click(clickeventChoices);
         var eventContainer = $('<div>').addClass('eventContainers box' + i).text(i + 1);
         eventDiv.append(eventContainer).appendTo($('.main'));
         if ($('.eventContainers').hasClass('box5')){
@@ -197,7 +197,7 @@ function createDomPage3(){
 }
 
 function clickeventChoices(){
-    if($(this).hasClass('box5')){
+    if($(this).hasClass('outerbox5')){
         clearMain();
         createDomPage5();
     } else {
@@ -290,7 +290,7 @@ function clickEventBtns () {
 
 function createDomPage5(){
     for (var i=0; i<4; i++){
-        var finalDiv = $('<div>').addClass('finalBtns col-sm-6 col-xs-12')
+        var finalDiv = $('<div>').addClass('finalBtns col-xs-6 col-sm-6');
         $('.main').append(finalDiv);
         var finalDivContainer = $('<div>').addClass('finalDivContainer').text(i+1).attr('id', 'final_' +i);
         $(finalDiv).append(finalDivContainer);
