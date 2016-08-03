@@ -82,7 +82,10 @@ function createDomPage1() {
 
         var dateChoices = $('<div>').addClass('col-sm-4 dateChoices').click(genderClicked).attr('gender', choiceIDArray[i]);
         $('.main').append(dateChoices);
-        var dateChoicesContainer = $('<div>').addClass('dateChoicesContainer');
+        var dateChoicesContainer = $('<div>').addClass('dateChoicesContainer choice' + i);
+        if ($('.dateChoicesContainer').hasClass('choice0')){
+            $('.dateChoicesContainer').css('background-image','url(images/male.png)');
+        }
         $(dateChoices).append(dateChoicesContainer);
 
     }
