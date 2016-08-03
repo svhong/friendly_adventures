@@ -41,7 +41,7 @@ $(document).ready(function(){
     //create location object
     getAddress();
     createDomPage1();
-    //Added from Amina
+
     getNames();
     getPersonImages();
 
@@ -148,9 +148,16 @@ function createDomPage2 (){
         var dateDiv = $('<div>').addClass('dateBtns col-sm-4 col-xs-6');
         $(dateDiv).click(clickDateBtns);
         $('.main').append(dateDiv);
-        var dateContainer = $('<div>').addClass('dateContainers').text('date ' + (i+1));
-        $(dateDiv).append(dateContainer);
+        var dateContainer = $('<div>').addClass('dateContainers').attr('id', 'second' +i);
+        var nameContainer = $('<div>').addClass('nameContainers').text('Name' + (i+1));
+        $(dateDiv).append(dateContainer, nameContainer);
+
+        (function(){
+            var id = 'second' + i;
+            getPersonImages(id);
+        })()
     }
+
 }
 
 
@@ -175,7 +182,7 @@ function getNames() {
 //End of random name function
 
 //Getting images from Flickr function
-function getPersonImages() {
+function getPersonImages(id) {
     $.ajax({
         url: 'https://api.flickr.com/services/rest',
         method: 'get',
@@ -184,14 +191,34 @@ function getPersonImages() {
             api_key: '4291af049e7b51ff411bc39565109ce6',
             nojsoncallback: '1',
             sort: 'relevance',
-            text: 'person',
+            text: 'potrait male',
             format: 'json'
         },
 
         success: function (result) {
             console.log(result);
+            var index = Math.floor((Math.random() * 6));
+            console.log(index);
+            var all_photo = result.photos.photo;
+            var photo_id = all_photo[index].id;
+            var farm_id = all_photo[index].farm;
+            var secret_id = all_photo[index].secret;
+            var server_id = all_photo[index].server;
+
+            console.log(photo_id, farm_id, secret_id);
+
+            var image_src = 'https://farm' + farm_id + '.staticflickr.com/' + server_id + '/' + photo_id + '_' + secret_id + '.jpg';
+            console.log(image_src);
+
+            var male_images = $('<img>').attr('src', image_src).attr('width', 300).attr('height', 200);
+
+
+            $("#" + id).append(male_images);
+
 
         }
+
+
     })
 }
 
@@ -206,7 +233,8 @@ function clickDateBtns (){
 
 function createDomPage3(){
     for(var i = 0; i < 6; i++) {
-        var eventDiv = $('<div>').addClass('eventBtns col-sm-4 col-xs-6').click(clickeventChoices);
+
+        var eventDiv = $('<div>').addClass('eventBtns col-sm-4 col-xs-6 outerbox' + i).click(clickeventChoices);
         var eventContainer = $('<div>').addClass('eventContainers box' + i).text(i + 1);
         eventDiv.append(eventContainer).appendTo($('.main'));
         if ($('.eventContainers').hasClass('box5')){
@@ -216,12 +244,38 @@ function createDomPage3(){
 }
 
 function clickeventChoices(){
-    if($(this).hasClass('box5')){
+    if($(this).hasClass('outerbox5')){
         clearMain();
         createDomPage5();
     } else {
         clearMain();
+        initMap();
         createDomPage4();
+    }
+}
+
+var map2;
+var infowindow2;
+var object_list;
+
+function initMap() {
+    var mapsize = $('<div>').attr("id", 'map').appendTo('.main');
+    map2 = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 33.6839, lng: -117.7947},
+        zoom: 12
+    });
+    infowindow2 = new google.maps.InfoWindow();//
+    var service = new google.maps.places.PlacesService(map2); //constructor
+    service.nearbySearch({
+        location: {lat: 33.6839, lng: -117.7947}, //use brian's plug in location object
+        radius: 7000,//radius in meters
+        type: ['restaurant'],//variables for this keyword. use parameter
+    }, callback);
+    function callback(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            object_list = results;
+            console.log("obejct_list : ",object_list);//this gives objects of searched places in an array (from line 37 - 41 and calls this function);
+        }
     }
 }
 
@@ -283,7 +337,7 @@ function clickEventBtns () {
 
 function createDomPage5(){
     for (var i=0; i<4; i++){
-        var finalDiv = $('<div>').addClass('finalBtns col-sm-6 col-xs-12')
+        var finalDiv = $('<div>').addClass('finalBtns col-xs-6 col-sm-6');
         $('.main').append(finalDiv);
         var finalDivContainer = $('<div>').addClass('finalDivContainer').text(i+1).attr('id', 'final_' +i);
         $(finalDiv).append(finalDivContainer);
