@@ -40,8 +40,14 @@ body {
     /*width: 300px;*/
 /*}*/
 
-@media only screen and (min-width: 992px){
-    .dateBtns, .finalBtns, .dateChoices, .eventBtns {
-        height: 40vh;
+@media only screen and (min-width: 768px){
+    .dateBtns, .dateChoices, .eventBtns, .finalBtns {
+        height: 35vh;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .finalBtns {
+        height: 30vh;
     }
 }

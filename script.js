@@ -239,7 +239,7 @@ function clickEventBtns () {
 
 function createDomPage5(){
     for (var i=0; i<4; i++){
-        var finalDiv = $('<div>').addClass('finalBtns col-sm-6 col-xs-12')
+        var finalDiv = $('<div>').addClass('finalBtns col-xs-6 col-sm-6');
         $('.main').append(finalDiv);
         var finalDivContainer = $('<div>').addClass('finalDivContainer').text(i+1).attr('id', 'final_' +i);
         $(finalDiv).append(finalDivContainer);
