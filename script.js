@@ -246,7 +246,7 @@ function createDomPage3(){
         var eventDiv = $('<div>').addClass('eventBtns col-sm-4 col-xs-6 outerbox ' +i).attr("venue", api_call_keywords[i]).click(function(){
             clickeventChoices($(this));
         });//clickeventChoices()
-        var eventContainer = $('<div>').addClass('eventContainers box' + i).text(i + 1);
+        var eventContainer = $('<div>').addClass('eventContainers box' + i).text(api_call_keywords[i]);
         eventDiv.append(eventContainer).appendTo($('.main'));
         if ($('.eventContainers').hasClass('box5')){
             $('.box5').text('SURPRISE ME!')
@@ -305,7 +305,7 @@ function createDomPage4(eventList){
         var eventDiv = $('<div>').addClass('eventBtns col-sm-4 col-xs-6');
         $(eventDiv).click(clickEventBtns);
         $('.main').append(eventDiv);
-        var eventContainer = $('<div>').addClass('dateContainers').text(i+1).css(
+        var eventContainer = $('<div>').addClass('dateContainers').text(redefinedEventList[i].name).css(
             'background-image', 'url('+redefinedEventList[i].photos[0].getUrl({maxWidth:500, maxHeight:500})+')'
         );;
         $(eventDiv).append(eventContainer);
