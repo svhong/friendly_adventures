@@ -358,20 +358,37 @@ function initialize(location) {
     console.log(location);
     var shibaImage = 'http://orig15.deviantart.net/fb18/f/2011/220/0/e/pixel_shiba_inu_by_babiry-d45xejf.gif';
     var currentLocation = locObj.getLocation();
-    var mapOptions = {
+
+    var locations = [
+        ['My Location', currentLocation.lat, currentLocation.long, 1],
+        ['My Destination - Test', 33.6501, -117.7436, 2]
+    ];
+
+    var map = new google.maps.Map(document.getElementById('final_2'), {
+        zoom: 12,
         center: new google.maps.LatLng(currentLocation.lat, currentLocation.long),
-        zoom: 13,
         mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-
-    map = new google.maps.Map(document.getElementById("final_2"), mapOptions);
-
-    var myLocationMarker = new google.maps.Marker({
-        position:  new google.maps.LatLng(currentLocation.lat, currentLocation.long),
-        map: map,
-        icon: shibaImage,
-        animation:google.maps.Animation.BOUNCE
     });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+            map: map,
+            icon: shibaImage
+        });
+
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+                infowindow.setContent(locations[i][0]);
+                infowindow.open(map, marker);
+            }
+        })(marker, i));
+    }
+
 }
 
 //End of google maps function
