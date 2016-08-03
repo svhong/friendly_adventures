@@ -360,7 +360,7 @@ function initialize(location) {
     ];
 
     var map = new google.maps.Map(document.getElementById('final_2'), {
-        zoom: 11,
+        zoom: 12,
         center: new google.maps.LatLng(currentLocation.lat, currentLocation.long),
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
