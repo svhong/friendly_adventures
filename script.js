@@ -160,9 +160,10 @@ function clickDateBtns (){
 
 function createDomPage3(){
     for(var i = 0; i < 6; i++) {
-        var selectEvent = $('<div>').addClass('eventChoices col-sm-4 col-xs-6 box' + i).text('EVENT CHOICE' + i).click(clickeventChoices);
-        $('.main').append(selectEvent);
-        if ($('.eventChoices').hasClass('box5')){
+        var eventDiv = $('<div>').addClass('eventBtns col-sm-4 col-xs-6').click(clickeventChoices);
+        var eventContainer = $('<div>').addClass('eventContainers box' + i).text(i + 1);
+        eventDiv.append(eventContainer).appendTo($('.main'));
+        if ($('.eventContainers').hasClass('box5')){
             $('.box5').text('SURPRISE ME!')
         }
     }

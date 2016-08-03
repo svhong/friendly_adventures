@@ -14,7 +14,7 @@ div{
     height: 40vh;
 }
 
-.dateChoicesContainer, .dateContainers , .finalDivContainer, .dateContainers {
+.dateChoicesContainer, .dateContainers , .finalDivContainer, .dateContainers, .eventContainers {
     height: 90%;
     background-color: skyblue;
     text-align: center;
