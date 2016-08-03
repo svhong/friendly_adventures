@@ -159,7 +159,8 @@ function createDomPage2() {
 //Getting random names function via ajax call
 function getNames(id) {
     var dataObj = {
-        amount: 6
+        amount: 6,
+        region: 'United States'
     };
     nameSelect = genderSelect.toLowerCase();
     if (nameSelect != 'shiba') {
@@ -248,11 +249,12 @@ function createDomPage3() {
         var eventDiv = $('<div>').addClass('eventBtns col-sm-4 col-xs-6 outerbox ' + i).attr("venue", api_call_keywords[i]).click(function () {
             clickeventChoices($(this));
         });//clickeventChoices()
-        var eventContainer = $('<div>').addClass('eventContainers box' + i).text(api_call_keywords[i]);
-        eventDiv.append(eventContainer).appendTo($('.main'));
-        if ($('.eventContainers').hasClass('box5')) {
-            $('.box5').text('SURPRISE ME!')
-        }
+        var textContainer = $('<div>').addClass('nameContainers').text(api_call_keywords[i]);
+        var eventContainer = $('<div>').addClass('eventContainers box' + i);
+        eventDiv.append(eventContainer,textContainer).appendTo($('.main'));
+        // if ($('.eventContainers').hasClass('box5')) {
+        //     $('.box5').text('SURPRISE ME!')
+        // }
     }
 }
 
@@ -308,10 +310,11 @@ function createDomPage4(eventList){
         var eventDiv = $('<div>').addClass('eventBtns col-sm-4 col-xs-6');
         $(eventDiv).click(clickEventBtns);
         $('.main').append(eventDiv);
-        var eventContainer = $('<div>').addClass('dateContainers').text(redefinedEventList[i].name).css(
+        var textContainer = $('<div>').addClass('nameContainers').text(redefinedEventList[i].name);
+        var eventContainer = $('<div>').addClass('dateContainers').css(
             'background-image', 'url('+redefinedEventList[i].photos[0].getUrl({maxWidth:1000, maxHeight:1000})+')'
-        );
-        $(eventDiv).append(eventContainer);
+        ).attr('redefinedEventIndex',i);
+        $(eventDiv).append(eventContainer, textContainer);
     }
 }
 
