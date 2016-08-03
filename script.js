@@ -185,9 +185,9 @@ function clickDateBtns (){
 // PAGE 3 - Event Choices
 
 function createDomPage3(){
+    var api_call_keywords = ['restaurant','cafe','museum', 'movie_theater','night_club','shopping_mall'];
     for(var i = 0; i < 6; i++) {
-
-        var eventDiv = $('<div>').addClass('eventBtns col-sm-4 col-xs-6 outerbox' + i).click(clickeventChoices);
+        var eventDiv = $('<div>').addClass('eventBtns col-sm-4 col-xs-6 outerbox ' + api_call_keywords[i]).click(clickeventChoices);
         var eventContainer = $('<div>').addClass('eventContainers box' + i).text(i + 1);
         eventDiv.append(eventContainer).appendTo($('.main'));
         if ($('.eventContainers').hasClass('box5')){
