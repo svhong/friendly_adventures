@@ -39,12 +39,11 @@ $(document).ready(function(){
     //create location object
     getAddress();
     createDomPage1();
-
-
+    
     //Added from Amina
     getNames();
 
-    getPersonImages();
+
 
 });
 
@@ -103,8 +102,11 @@ function createDomPage2 (){
         var dateDiv = $('<div>').addClass('dateBtns col-sm-4 col-xs-6');
         $(dateDiv).click(clickDateBtns);
         $('.main').append(dateDiv);
-        var dateContainer = $('<div>').addClass('dateContainers').text(i+1);
+        var dateContainer = $('<div>').addClass('dateContainers').text(i+1).attr('id', 'second' +i);
         $(dateDiv).append(dateContainer);
+
+        getPersonImages();
+
     }
 }
 
@@ -139,14 +141,38 @@ function getPersonImages() {
             api_key: '4291af049e7b51ff411bc39565109ce6',
             nojsoncallback: '1',
             sort: 'relevance',
-            text: 'person',
+            text: 'potrait male',
             format: 'json'
         },
 
         success: function (result) {
             console.log(result);
+            var index = Math.floor((Math.random() * 6));
+            console.log(index);
+            var all_photo = result.photos.photo;
+            var photo_id = all_photo[index].id;
+            var farm_id = all_photo[index].farm;
+            var secret_id = all_photo[index].secret;
+            var server_id = all_photo[index].server;
+
+            console.log(photo_id, farm_id, secret_id);
+
+            var image_src = 'https://farm' + farm_id + '.staticflickr.com/' + server_id + '/' + photo_id + '_' + secret_id + '.jpg';
+            console.log(image_src);
+
+            var male_images = $('<img>').attr('src', image_src).attr('width', 300).attr('height', 200);
+
+            $("#second0").append(male_images);
+            $("#second1").append(male_images);
+            $("#second2").append(male_images);
+            $("#second3").append(male_images);
+            $("#second4").append(male_images);
+            $("#second5").append(male_images);
+
 
         }
+
+
     })
 }
 
