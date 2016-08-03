@@ -367,6 +367,8 @@ function initialize(location) {
         ['My Destination - Test', 33.6501, -117.7436, 2]
     ];
 
+    var myCenter = [];
+    
     var map = new google.maps.Map(document.getElementById('final_2'), {
         zoom: 12,
         center: new google.maps.LatLng(currentLocation.lat, currentLocation.long),
