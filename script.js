@@ -1,42 +1,43 @@
 // GLOBAL VARIABLES
-var myLocation;
+var locObj;
 var genderSelect;
 var firstName;
 var lastName;
 var map;
 
-function LocationObj(){
+function LocationObj(successCallback, errorCallback){
+    this.success = successCallback;
+    this.error = errorCallback;
     var myPosition = {
         lat: null,
         long: null,
-        success: null
+        status: null
     };
     var nav = navigator.geolocation;
-    nav.getCurrentPosition(success, failure);
+
     function success(position){
         myPosition.lat = position.coords.latitude;
         myPosition.long = position.coords.longitude;
-        myPosition.success = true;
+        myPosition.status = true;
+        this.success();
     }
     
     function failure(error){
         //defaults to learningfuze location if it fails
         myPosition.lat = 33.6362183;
         myPosition.lang = -117.7394721;
-        myPosition.success = false;
+        myPosition.status = false;
         myPosition.error = error;
     }
     this.getLocation = function(){
         return myPosition;
     }
+    nav.getCurrentPosition(success.bind(this), failure);
 }
 //DOCUMENT READY
 $(document).ready(function(){
     //create location object
-    var locObj = new LocationObj();
-    myLocation = locObj.getLocation();
-    console.log(myLocation);
-
+    getAddress();
     createDomPage1();
 
 
@@ -50,18 +51,45 @@ $(document).ready(function(){
 function clearMain(){
     $('.main').children().remove();
 }
+function getAddress(){
+    locObj = new LocationObj(checkAddress, null);
+
+}
+function checkAddress(){
+    console.log(locObj.getLocation());
+    
+    if (!locObj.success){
+        createAddressBar();
+    }
+}
+
+function createAddressBar(){
+    $('<input>').attr({
+        type: 'text',
+        placeholder: 'Enter Your Location',
+        class: 'col-lg-6 col-lg-offset-3'
+    }).appendTo('.main');
+
+}
 
 // PAGE 1 - Date Choice
 function createDomPage1(){
     var choiceArray = ['Male', 'Female', 'Surprise Me'];
     for (var i = 0; i < choiceArray.length; i++){
-        $('<div>').text(choiceArray[i])
-            .addClass('col-sm-12 dateChoices').click(function(){selectedGender();}).appendTo('.main');
+        var dateChoices = $('<div>').addClass('col-sm-4 dateChoices').click(selectedGender);
+        $('.main').append(dateChoices);
+        var dateChoicesContainer = $('<div>').addClass('dateChoicesContainer').text(choiceArray[i]);
+        $(dateChoices).append(dateChoicesContainer);
     }
 }
 
 function selectedGender() {
     genderSelect = $(this).text();
+    
+    if (genderSelect === 'Surprise Me'){
+        createDomPage5();
+    }
+    
     clearMain();
     createDomPage2();
     console.log(genderSelect);
@@ -72,9 +100,11 @@ function selectedGender() {
 
 function createDomPage2 (){
     for (var i=0; i < 6; i++){
-        var dateDiv = $('<div>').addClass('dateBtns col-sm-4 col-xs-6').text(i+1);
+        var dateDiv = $('<div>').addClass('dateBtns col-sm-4 col-xs-6');
         $(dateDiv).click(clickDateBtns);
         $('.main').append(dateDiv);
+        var dateContainer = $('<div>').addClass('dateContainers').text(i+1);
+        $(dateDiv).append(dateContainer);
     }
 }
 
@@ -152,14 +182,19 @@ function clickeventChoices(){
 // PAGE 4  -  Events Buttons
 function createDomPage4(){
     for(var i = 0; i < 6 ; i++){
-        var div = $('<div>').addClass('eventBtns col-xs-6 col-sm-4 col-md-4 col-lg-4').click(function(){
-            clearMain();
-            createDomPage5();
-        });
-        $('.main').append(div);
+        var eventDiv = $('<div>').addClass('eventBtns col-sm-4 col-xs-6');
+        $(eventDiv).click(clickEventBtns);
+        $('.main').append(eventDiv);
+        var eventContainer = $('<div>').addClass('dateContainers').text(i+1);
+        $(eventDiv).append(eventContainer);
     }
 }
 
+function clickEventBtns () {
+    clearMain();
+    //save the img and name of clicked item
+    createDomPage5();
+}
 
 // Dinner
 
@@ -202,8 +237,10 @@ function createDomPage4(){
 
 function createDomPage5(){
     for (var i=0; i<4; i++){
-        var finalDiv = $('<div>').addClass('finalBtns col-sm-6 col-xs-12').text(i+1);
+        var finalDiv = $('<div>').addClass('finalBtns col-sm-6 col-xs-12')
         $('.main').append(finalDiv);
+        var finalDivContainer = $('<div>').addClass('finalDivContainer').text(i+1);
+        $(finalDiv).append(finalDivContainer);
     }
 }
 
@@ -221,6 +258,7 @@ function initialize(location) {
 
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 }
+
 //End of google maps function
 
 
