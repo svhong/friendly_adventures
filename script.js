@@ -232,9 +232,11 @@ function clickDateBtns (){
 // PAGE 3 - Event Choices
 
 function createDomPage3(){
+    var api_call_keywords = ['restaurant','cafe','park', 'movie_theater','night_club','shopping_mall'];
     for(var i = 0; i < 6; i++) {
-
-        var eventDiv = $('<div>').addClass('eventBtns col-sm-4 col-xs-6 outerbox' + i).click(clickeventChoices);
+        var eventDiv = $('<div>').addClass('eventBtns col-sm-4 col-xs-6 outerbox ' +i).attr("venue", api_call_keywords[i]).click(function(){
+            clickeventChoices($(this));
+        });//clickeventChoices()
         var eventContainer = $('<div>').addClass('eventContainers box' + i).text(i + 1);
         eventDiv.append(eventContainer).appendTo($('.main'));
         if ($('.eventContainers').hasClass('box5')){
@@ -243,23 +245,18 @@ function createDomPage3(){
     }
 }
 
-function clickeventChoices(){
-    if($(this).hasClass('outerbox5')){
-        clearMain();
-        createDomPage5();
-    } else {
-        clearMain();
-        initMap();
-        createDomPage4();
-    }
+function clickeventChoices(clickedElement){
+    var eventSearch = clickedElement.attr('venue');
+    console.log('venue clicked : ', eventSearch);
+    initMap(eventSearch);
 }
 
 var map2;
 var infowindow2;
 var object_list;
 
-function initMap() {
-    var mapsize = $('<div>').attr("id", 'map').appendTo('.main');
+function initMap(keyword) {
+    $('<div>').attr("id", 'map').appendTo('.main');
     map2 = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 33.6839, lng: -117.7947},
         zoom: 12
@@ -269,7 +266,7 @@ function initMap() {
     service.nearbySearch({
         location: {lat: 33.6839, lng: -117.7947}, //use brian's plug in location object
         radius: 7000,//radius in meters
-        type: ['restaurant'],//variables for this keyword. use parameter
+        type: [keyword],//variables for this keyword. use parameter
     }, callback);
     function callback(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -277,6 +274,7 @@ function initMap() {
             console.log("obejct_list : ",object_list);//this gives objects of searched places in an array (from line 37 - 41 and calls this function);
         }
     }
+    createDomPage4();
 }
 
 // PAGE 4  -  Events Buttons
