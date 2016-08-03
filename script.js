@@ -382,12 +382,29 @@ function initialize(location) {
 
     map = new google.maps.Map(document.getElementById("final_2"), mapOptions);
 
-    var myLocationMarker = new google.maps.Marker({
-        position:  new google.maps.LatLng(currentLocation.lat, currentLocation.long),
-        map: map,
-        icon: shibaImage,
-        animation:google.maps.Animation.BOUNCE
-    });
+    // var myLocationMarker = new google.maps.Marker({
+    //     position:  new google.maps.LatLng(currentLocation.lat, currentLocation.long),
+    //     map: map,
+    //     icon: shibaImage,
+    //     animation:google.maps.Animation.BOUNCE
+    // });
+
+    var myLocation = [
+        ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+        ['Maroubra Beach', -33.950198, 151.259302, 1]
+    ];
+
+    var marker, i;
+
+    for (i = 0; i < myLocation.length; i++) {
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+            map: map,
+            icon: shibaImage,
+            animation: google.maps.Animation.BOUNCE
+        });
+
+    }
 }
 
 //End of google maps function
