@@ -274,6 +274,7 @@ function initMap(keyword) {
             console.log("obejct_list : ",object_list);//this gives objects of searched places in an array (from line 37 - 41 and calls this function);
         }
     }
+    clearMain();
     createDomPage4();
 }
 
