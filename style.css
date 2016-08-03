@@ -58,20 +58,25 @@ body {
     height: 100%;
 }
 
-.names{
+.nameContainers{
     background-color: #000000;
     opacity: 0;
     transform: translateY(-100%);
     color: #ef5350;
-    font-size: em;
+    font-size: 2em;
     position: relative;
     bottom: 10%;
     overflow: hidden;
     text-align: center;
 }
 
-.dateBtns:hover .names {
+.dateBtns:hover .nameContainers {
     transform: translateY(0%);
     opacity: 1;
     transition-duration: 0.5s;
+}
+
+.dateContainers {
+    background-size: cover;
+    background-repeat: no-repeat;
 }

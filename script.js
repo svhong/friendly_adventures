@@ -149,7 +149,7 @@ function createDomPage2() {
         $('.main').append(dateDiv);
         var dateContainer = $('<div>').addClass('dateContainers').attr('id', 'second' + i);
         $(dateContainer).append(getPersonImagesArray[i]);
-        var nameContainer = $('<div>').addClass('nameContainers').text('Name' + (i + 1));
+        var nameContainer = $('<div>').addClass('nameContainers');
         $(nameContainer).append(getNamesArray[i]);
         $(dateDiv).append(dateContainer, nameContainer);
     }
@@ -215,7 +215,7 @@ function getPersonImages() {
                 console.log(photo_id, farm_id, secret_id);
                 var image_src = 'https://farm' + farm_id + '.staticflickr.com/' + server_id + '/' + photo_id + '_' + secret_id + '.jpg';
                 console.log(image_src);
-                var images = $('<img>').attr('src', image_src);
+                var images = $('<img>').attr('src', image_src).addClass('flickrImg');
                 getPersonImagesArray.push(images);
                 console.log(getPersonImagesArray);
             }
@@ -304,7 +304,7 @@ function createDomPage4(eventList){
         $(eventDiv).click(clickEventBtns);
         $('.main').append(eventDiv);
         var eventContainer = $('<div>').addClass('dateContainers').text(redefinedEventList[i].name).css(
-            'background-image', 'url('+redefinedEventList[i].photos[0].getUrl({maxWidth:500, maxHeight:500})+')'
+            'background-image', 'url('+redefinedEventList[i].photos[0].getUrl({maxWidth:1000, maxHeight:1000})+')'
         );
         $(eventDiv).append(eventContainer);
     }
