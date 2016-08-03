@@ -21,6 +21,7 @@ function LocationObj(successCallback, errorCallback){
         myPosition.status = true;
         this.success();
     }
+    
     function failure(error){
         //defaults to learningfuze location if it fails
         myPosition.lat = 33.6362183;
@@ -42,7 +43,7 @@ $(document).ready(function(){
 
     //Added from Amina
     getNames();
-    navigator.geolocation.getCurrentPosition(initialize);
+
     getPersonImages();
 
 });
@@ -161,10 +162,10 @@ function clickDateBtns (){
 function createDomPage3(){
     for(var i = 0; i < 6; i++) {
 
-        var selectEvent = $('<div>').addClass('eventChoices col-sm-4 col-xs-6').click(clickeventChoices);
-        var eventList = $('<div>').addClass('eventListContainer box' + i).text('Event' + (i+1));
-        selectEvent.append(eventList).appendTo($('.main'));
-        if ($('.eventListContainer').hasClass('box5')){
+        var eventDiv = $('<div>').addClass('eventBtns col-sm-4 col-xs-6').click(clickeventChoices);
+        var eventContainer = $('<div>').addClass('eventContainers box' + i).text(i + 1);
+        eventDiv.append(eventContainer).appendTo($('.main'));
+        if ($('.eventContainers').hasClass('box5')){
             $('.box5').text('SURPRISE ME!')
         }
     }
@@ -240,8 +241,9 @@ function createDomPage5(){
     for (var i=0; i<4; i++){
         var finalDiv = $('<div>').addClass('finalBtns col-sm-6 col-xs-12')
         $('.main').append(finalDiv);
-        var finalDivContainer = $('<div>').addClass('finalDivContainer').text(i+1);
+        var finalDivContainer = $('<div>').addClass('finalDivContainer').text(i+1).attr('id', 'final_' +i);
         $(finalDiv).append(finalDivContainer);
+        navigator.geolocation.getCurrentPosition(initialize);
     }
 }
 
@@ -257,7 +259,7 @@ function initialize(location) {
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
-    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    map = new google.maps.Map(document.getElementById("final_2"), mapOptions);
 }
 
 //End of google maps function
