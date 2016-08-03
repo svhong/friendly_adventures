@@ -21,7 +21,7 @@ body {
     height: 90%;
     background-color: #ef5350;
     text-align: center;
-    padding: 15px, 0;
+    padding: 15px, 0; /*NEED TO FIX*/
     box-shadow: 0 10px 6px -6px gray;
 }
 /*Page 3*/
@@ -50,4 +50,8 @@ body {
     .finalBtns {
         height: 30vh;
     }
+}
+.flickrImg {
+    width: 100%;
+    height: 100%;
 }

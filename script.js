@@ -210,7 +210,7 @@ function getPersonImages(id) {
             var image_src = 'https://farm' + farm_id + '.staticflickr.com/' + server_id + '/' + photo_id + '_' + secret_id + '.jpg';
             console.log(image_src);
 
-            var male_images = $('<img>').attr('src', image_src).attr('width', 350).attr('height', 300);
+            var male_images = $('<img>').attr('src', image_src).addClass('flickrImg');
 
 
             $("#" + id).append(male_images);
