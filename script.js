@@ -355,17 +355,24 @@ function createDomPage5(){
 
 
 //Getting google maps for the locations
-
 function initialize(location) {
     console.log(location);
+    var shibaImage = 'http://orig15.deviantart.net/fb18/f/2011/220/0/e/pixel_shiba_inu_by_babiry-d45xejf.gif';
     var currentLocation = locObj.getLocation();
     var mapOptions = {
         center: new google.maps.LatLng(currentLocation.lat, currentLocation.long),
-        zoom: 8,
+        zoom: 13,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
     map = new google.maps.Map(document.getElementById("final_2"), mapOptions);
+
+    var myLocationMarker = new google.maps.Marker({
+        position:  new google.maps.LatLng(currentLocation.lat, currentLocation.long),
+        map: map,
+        icon: shibaImage,
+        animation:google.maps.Animation.BOUNCE
+    });
 }
 
 //End of google maps function
