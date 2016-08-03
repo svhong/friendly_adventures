@@ -150,7 +150,7 @@ function createDomPage2 (){
         $(dateDiv).click(clickDateBtns);
         $('.main').append(dateDiv);
         var dateContainer = $('<div>').addClass('dateContainers').attr('id', 'second' +i);
-        var nameContainer = $('<div>').addClass('nameContainers').text('Name' + (i+1));
+        var nameContainer = $('<div>').addClass('nameContainers');
         $(dateDiv).append(dateContainer, nameContainer);
 
         (function(){
@@ -177,7 +177,7 @@ function getNames(id) {
             firstName = result.name;
             lastName = result.surname;
 
-            $("#" + id).next().text(firstName + ' ' + lastName);
+            $("#" + id).next().addClass('names').text(firstName + ' ' + lastName);
             console.log("Name: " +  firstName + lastName);
         },
 
@@ -370,7 +370,12 @@ function initialize(location) {
 
 //End of google maps function
 
-
+function createSpinner (){
+    $('<div>').addClass("fa fa-refresh fa-spin fa-3x fa-fw").css({
+        'width': '60vw',
+        'height': '60vh'
+    }).appendTo('.main');
+}
 
 
 
