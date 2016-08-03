@@ -310,18 +310,24 @@ function createDomPage4(eventList){
     }
     console.log('redefinedList : ',redefinedEventList);
     for(var i = 0; i < 6 ; i++){
-        var eventDiv = $('<div>').addClass('eventBtns col-sm-4 col-xs-6');
-        $(eventDiv).click(clickEventBtns);
+        var eventDiv = $('<div>').addClass('eventBtns col-sm-4 col-xs-6').attr('redefinedEventIndex',i);
+        $(eventDiv).click(function(){
+            clickEventBtns($(this));
+        });
         $('.main').append(eventDiv);
         var textContainer = $('<div>').addClass('nameContainers').text(redefinedEventList[i].name);
         var eventContainer = $('<div>').addClass('dateContainers').css(
             'background-image', 'url('+redefinedEventList[i].photos[0].getUrl({maxWidth:1000, maxHeight:1000})+')'
-        ).attr('redefinedEventIndex',i);
+        );
         $(eventDiv).append(eventContainer, textContainer);
     }
 }
-
-function clickEventBtns() {
+var finalEvent;
+function clickEventBtns(imgElement) {
+    var redefinedIndex = imgElement.attr('redefinedEventIndex');
+    console.log("index number in redefinedEventList : ",redefinedIndex);
+    finalEvent = redefinedEventList[redefinedIndex];
+    console.log('finalEvent is : ',finalEvent);
     clearMain();
     //save the img and name of clicked item
     createDomPage5();
