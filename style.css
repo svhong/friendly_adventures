@@ -1,11 +1,11 @@
 body {
-    background-color: #ffcdd2;
+    background-color: #ffffff;
 }
 
 .header {
     text-align: center;
     background-color: #b71c1c;
-    color: #ffcdd2;
+    color: #ffffff;
     box-shadow: 0 10px 6px -6px gray;
 }
 
@@ -19,7 +19,7 @@ body {
 
 .dateChoicesContainer, .dateContainers , .finalDivContainer, .eventContainers, .eventChoices {
     height: 90%;
-    background-color: #b71c1c;
+    background-color: #ef5350;
     text-align: center;
     padding: 15px, 0;
     box-shadow: 0 10px 6px -6px gray;
