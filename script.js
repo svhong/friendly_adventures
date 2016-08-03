@@ -313,7 +313,7 @@ function createDomPage4(eventList){
         var textContainer = $('<div>').addClass('nameContainers').text(redefinedEventList[i].name);
         var eventContainer = $('<div>').addClass('dateContainers').css(
             'background-image', 'url('+redefinedEventList[i].photos[0].getUrl({maxWidth:1000, maxHeight:1000})+')'
-        );
+        ).attr('redefinedEventIndex',i);
         $(eventDiv).append(eventContainer, textContainer);
     }
 }
