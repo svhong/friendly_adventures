@@ -204,7 +204,6 @@ function clickeventChoices(){
     } else {
         clearMain();
         initMap();
-        createDomPage4();
     }
 }
 
@@ -213,7 +212,7 @@ var infowindow2;
 var object_list;
 
 function initMap() {
-    var mapsize = $('<div>').attr("id", 'map').appendTo('.main');
+    $('<div>').attr("id", 'map').appendTo('.main');
     map2 = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 33.6839, lng: -117.7947},
         zoom: 12
@@ -231,6 +230,7 @@ function initMap() {
             console.log("obejct_list : ",object_list);//this gives objects of searched places in an array (from line 37 - 41 and calls this function);
         }
     }
+    createDomPage4();
 }
 
 // PAGE 4  -  Events Buttons
