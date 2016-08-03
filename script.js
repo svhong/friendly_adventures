@@ -350,9 +350,9 @@ function createDomPage5(){
 
 function initialize(location) {
     console.log(location);
-
+    var currentLocation = locObj.getLocation();
     var mapOptions = {
-        center: new google.maps.LatLng(-34.397, 150.644),
+        center: new google.maps.LatLng(currentLocation.lat, currentLocation.long),
         zoom: 8,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
