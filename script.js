@@ -21,6 +21,7 @@ function LocationObj(successCallback, errorCallback){
         myPosition.status = true;
         this.success();
     }
+    
     function failure(error){
         //defaults to learningfuze location if it fails
         myPosition.lat = 33.6362183;
@@ -36,13 +37,13 @@ function LocationObj(successCallback, errorCallback){
 //DOCUMENT READY
 $(document).ready(function(){
     //create location object
-    getAddress()
+    getAddress();
     createDomPage1();
 
 
     //Added from Amina
     getNames();
-    navigator.geolocation.getCurrentPosition(initialize);
+
     getPersonImages();
 
 });
@@ -75,8 +76,11 @@ function createAddressBar(){
 function createDomPage1(){
     var choiceArray = ['Male', 'Female', 'Surprise Me'];
     for (var i = 0; i < choiceArray.length; i++){
-        $('<div>').text(choiceArray[i])
-            .addClass('col-sm-12 dateChoices').click(selectedGender).appendTo('.main');
+
+        var dateChoices = $('<div>').addClass('col-sm-4 dateChoices').click(selectedGender);
+        $('.main').append(dateChoices);
+        var dateChoicesContainer = $('<div>').addClass('dateChoicesContainer').text(choiceArray[i]);
+        $(dateChoices).append(dateChoicesContainer);
 
     }
 }
@@ -98,9 +102,11 @@ function selectedGender() {
 
 function createDomPage2 (){
     for (var i=0; i < 6; i++){
-        var dateDiv = $('<div>').addClass('dateBtns col-sm-4 col-xs-6').text(i+1);
+        var dateDiv = $('<div>').addClass('dateBtns col-sm-4 col-xs-6');
         $(dateDiv).click(clickDateBtns);
         $('.main').append(dateDiv);
+        var dateContainer = $('<div>').addClass('dateContainers').text(i+1);
+        $(dateDiv).append(dateContainer);
     }
 }
 
@@ -157,9 +163,10 @@ function clickDateBtns (){
 
 function createDomPage3(){
     for(var i = 0; i < 6; i++) {
-        var selectEvent = $('<div>').addClass('eventChoices col-sm-4 col-xs-6 box' + i).text('EVENT CHOICE' + i).click(clickeventChoices);
-        $('.main').append(selectEvent);
-        if ($('.eventChoices').hasClass('box5')){
+        var eventDiv = $('<div>').addClass('eventBtns col-sm-4 col-xs-6').click(clickeventChoices);
+        var eventContainer = $('<div>').addClass('eventContainers box' + i).text(i + 1);
+        eventDiv.append(eventContainer).appendTo($('.main'));
+        if ($('.eventContainers').hasClass('box5')){
             $('.box5').text('SURPRISE ME!')
         }
     }
@@ -178,14 +185,19 @@ function clickeventChoices(){
 // PAGE 4  -  Events Buttons
 function createDomPage4(){
     for(var i = 0; i < 6 ; i++){
-        var div = $('<div>').addClass('eventBtns col-xs-6 col-sm-4 col-md-4 col-lg-4').click(function(){
-            clearMain();
-            createDomPage5();
-        });
-        $('.main').append(div);
+        var eventDiv = $('<div>').addClass('eventBtns col-sm-4 col-xs-6');
+        $(eventDiv).click(clickEventBtns);
+        $('.main').append(eventDiv);
+        var eventContainer = $('<div>').addClass('dateContainers').text(i+1);
+        $(eventDiv).append(eventContainer);
     }
 }
 
+function clickEventBtns () {
+    clearMain();
+    //save the img and name of clicked item
+    createDomPage5();
+}
 
 // Dinner
 
@@ -228,8 +240,11 @@ function createDomPage4(){
 
 function createDomPage5(){
     for (var i=0; i<4; i++){
-        var finalDiv = $('<div>').addClass('finalBtns col-sm-6 col-xs-12').text(i+1);
+        var finalDiv = $('<div>').addClass('finalBtns col-sm-6 col-xs-12')
         $('.main').append(finalDiv);
+        var finalDivContainer = $('<div>').addClass('finalDivContainer').text(i+1).attr('id', 'final_' +i);
+        $(finalDiv).append(finalDivContainer);
+        navigator.geolocation.getCurrentPosition(initialize);
     }
 }
 
@@ -245,8 +260,9 @@ function initialize(location) {
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
-    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    map = new google.maps.Map(document.getElementById("final_2"), mapOptions);
 }
+
 //End of google maps function
 
 
