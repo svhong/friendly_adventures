@@ -190,14 +190,14 @@ function getPersonImages(id) {
             method: 'flickr.photos.search',
             api_key: '4291af049e7b51ff411bc39565109ce6',
             nojsoncallback: '1',
+            text: 'person male closeup',
             sort: 'relevance',
-            text: 'potrait male',
             format: 'json'
         },
 
         success: function (result) {
             console.log(result);
-            var index = Math.floor((Math.random() * 6));
+            var index = Math.floor((Math.random() * 100));
             console.log(index);
             var all_photo = result.photos.photo;
             var photo_id = all_photo[index].id;
@@ -210,7 +210,7 @@ function getPersonImages(id) {
             var image_src = 'https://farm' + farm_id + '.staticflickr.com/' + server_id + '/' + photo_id + '_' + secret_id + '.jpg';
             console.log(image_src);
 
-            var male_images = $('<img>').attr('src', image_src).attr('width', 300).attr('height', 200);
+            var male_images = $('<img>').attr('src', image_src).attr('width', 350).attr('height', 300);
 
 
             $("#" + id).append(male_images);
