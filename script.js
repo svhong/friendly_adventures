@@ -277,7 +277,7 @@ function initMap(keyword) {
     var service = new google.maps.places.PlacesService(map2); //constructor
     service.nearbySearch({
         location: {lat: myLocation.lat, lng: myLocation.long}, //use brian's plug in location object
-        radius: 7000,//radius in meters
+        radius: 10000,//radius in meters
         type: [keyword],//variables for this keyword. use parameter
     }, callback);
     function callback(results, status) {
@@ -310,7 +310,7 @@ function createDomPage4(eventList){
         $('.main').append(eventDiv);
         var eventContainer = $('<div>').addClass('dateContainers').text(redefinedEventList[i].name).css(
             'background-image', 'url('+redefinedEventList[i].photos[0].getUrl({maxWidth:500, maxHeight:500})+')'
-        );;
+        );
         $(eventDiv).append(eventContainer);
     }
 }
