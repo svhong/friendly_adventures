@@ -159,7 +159,8 @@ function createDomPage2() {
 //Getting random names function via ajax call
 function getNames(id) {
     var dataObj = {
-        amount: 6
+        amount: 6,
+        region: 'United States'
     };
     nameSelect = genderSelect.toLowerCase();
     if (nameSelect != 'shiba') {
