@@ -287,13 +287,27 @@ function initMap(keyword) {
 }
 
 // PAGE 4  -  Events Buttons
+var redefinedEventList = [];
+
 function createDomPage4(eventList){
-    console.log('redefinedList : ',eventList);
+    var j = 0;
+    while(redefinedEventList.length < 6){
+        if(eventList[j].hasOwnProperty('photos')){
+            redefinedEventList.push(eventList[j]);
+            j++;
+        }
+        else{
+            j++;
+        }
+    }
+    console.log('redefinedList : ',redefinedEventList);
     for(var i = 0; i < 6 ; i++){
         var eventDiv = $('<div>').addClass('eventBtns col-sm-4 col-xs-6');
         $(eventDiv).click(clickEventBtns);
         $('.main').append(eventDiv);
-        var eventContainer = $('<div>').addClass('dateContainers').text(i+1);
+        var eventContainer = $('<div>').addClass('dateContainers').text(i+1).css(
+            'background-image', 'url('+redefinedEventList[i].photos[0].getUrl({maxWidth:500, maxHeight:500})+')'
+        );;
         $(eventDiv).append(eventContainer);
     }
 }
