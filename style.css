@@ -20,8 +20,11 @@ div{
     padding: 15px, 0,
 }
 /*Page 3*/
-.eventChoices {
-
+.eventChoices .eventListContainer{
+    height: 90%;
+    background-color: skyblue;
+    text-align: center;
+    padding: 15px, 0,
 }
 
 /*Page 4*/
