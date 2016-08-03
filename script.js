@@ -102,8 +102,9 @@ function createDomPage2 (){
         var dateDiv = $('<div>').addClass('dateBtns col-sm-4 col-xs-6');
         $(dateDiv).click(clickDateBtns);
         $('.main').append(dateDiv);
-        var dateContainer = $('<div>').addClass('dateContainers').text('date ' + (i+1)).attr('id', 'second' +i);
-        $(dateDiv).append(dateContainer);
+        var dateContainer = $('<div>').addClass('dateContainers').attr('id', 'second' +i);
+        var nameContainer = $('<div>').addClass('nameContainers').text('Name' + (i+1));
+        $(dateDiv).append(dateContainer, nameContainer);
 
         (function(){
             var id = 'second' + i;
