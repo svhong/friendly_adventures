@@ -41,9 +41,7 @@ $(document).ready(function(){
     //create location object
     getAddress();
     createDomPage1();
-
     getNames();
-    getPersonImages();
 
 });
 
@@ -74,22 +72,24 @@ function createAddressBar(){
 
 // PAGE 1 - Date Choice
 function createDomPage1(){
-    var choiceArray = ['Male', 'Female', 'Surprise Me'];
-    for (var i = 0; i < choiceArray.length; i++){
+    // var choiceArray = ['Male', 'Female', 'Surprise Me'];
+    var choiceIDArray = ['Male', 'Female', 'Shiba']; // Used to set ID to div so we can use ID for search query input
 
-        var dateChoices = $('<div>').addClass('col-sm-4 dateChoices').click(selectedGender);
+    for (var i = 0; i < choiceIDArray.length; i++){
+
+        var dateChoices = $('<div>').addClass('col-sm-4 dateChoices').click(selectedGender).attr('gender', choiceIDArray[i]);
         $('.main').append(dateChoices);
-        var dateChoicesContainer = $('<div>').addClass('dateChoicesContainer').text(choiceArray[i]);
+        var dateChoicesContainer = $('<div>').addClass('dateChoicesContainer');
         $(dateChoices).append(dateChoicesContainer);
 
     }
 }
 
 function selectedGender() {
-    genderSelect = $(this).text();
+    genderSelect = $(this).attr('gender');
     setAddress();
     
-    if (genderSelect === 'Surprise Me'){
+    if (genderSelect === 'Shiba'){
         createDomPage5();
     }
     
@@ -151,14 +151,11 @@ function createDomPage2 (){
         var dateContainer = $('<div>').addClass('dateContainers').attr('id', 'second' +i);
         var nameContainer = $('<div>').addClass('nameContainers').text('Name' + (i+1));
         $(dateDiv).append(dateContainer, nameContainer);
-
-        (function(){
-            var id = 'second' + i;
-            getPersonImages(id);
-        })()
     }
-
+    getPersonImages();
 }
+
+
 
 
 //Getting random names function via ajax call
@@ -182,7 +179,7 @@ function getNames() {
 //End of random name function
 
 //Getting images from Flickr function
-function getPersonImages(id) {
+function getPersonImages() {
     $.ajax({
         url: 'https://api.flickr.com/services/rest',
         method: 'get',
@@ -190,34 +187,42 @@ function getPersonImages(id) {
             method: 'flickr.photos.search',
             api_key: '4291af049e7b51ff411bc39565109ce6',
             nojsoncallback: '1',
-            text: 'person male closeup',
+            text: genderSelect,
             sort: 'relevance',
             format: 'json'
         },
 
         success: function (result) {
             console.log(result);
-            var index = Math.floor((Math.random() * 100));
-            console.log(index);
-            var all_photo = result.photos.photo;
-            var photo_id = all_photo[index].id;
-            var farm_id = all_photo[index].farm;
-            var secret_id = all_photo[index].secret;
-            var server_id = all_photo[index].server;
 
-            console.log(photo_id, farm_id, secret_id);
+           var getPersonImagesArray =[null] ;
+           for (var i=0; i<6; i++){
+               var index = Math.floor((Math.random() * 1));
+               console.log(index);
+               var all_photo = result.photos.photo;
+               var photo_id = all_photo[index].id;
+               var farm_id = all_photo[index].farm;
+               var secret_id = all_photo[index].secret;
+               var server_id = all_photo[index].server;
 
-            var image_src = 'https://farm' + farm_id + '.staticflickr.com/' + server_id + '/' + photo_id + '_' + secret_id + '.jpg';
-            console.log(image_src);
+               console.log(photo_id, farm_id, secret_id);
 
-            var male_images = $('<img>').attr('src', image_src).attr('width', 350).attr('height', 300);
+               var image_src = 'https://farm' + farm_id + '.staticflickr.com/' + server_id + '/' + photo_id + '_' + secret_id + '.jpg';
+               console.log(image_src);
+               var images = $('<img>').attr('src', image_src);
 
+               getPersonImagesArray.push(images);
+               console.log(getPersonImagesArray);
+           }
 
-            $("#" + id).append(male_images);
-
+            //
+            //
+            // .attr('width', 350).attr('height', 300);
+            //
+            //
+            // $("#" + id).append(male_images);
 
         }
-
 
     })
 }
