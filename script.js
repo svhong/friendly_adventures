@@ -42,7 +42,8 @@ $(document).ready(function(){
     getAddress();
     createDomPage1();
 
-    getNames();
+
+
     getPersonImages();
 
 });
@@ -155,14 +156,19 @@ function createDomPage2 (){
         (function(){
             var id = 'second' + i;
             getPersonImages(id);
+            getNames(id);
         })()
+
     }
+
+
+
 
 }
 
 
 //Getting random names function via ajax call
-function getNames() {
+function getNames(id) {
     $.ajax({
         method: 'get',
         datatype: 'json',
@@ -171,7 +177,8 @@ function getNames() {
             firstName = result.name;
             lastName = result.surname;
 
-            $(".name").html(firstName + ' ' + lastName);
+            $("#" + id).next().text(firstName + ' ' + lastName);
+            console.log("Name: " +  firstName + lastName);
         },
 
         error: function () {
@@ -192,7 +199,9 @@ function getPersonImages(id) {
             nojsoncallback: '1',
             text: 'person male closeup',
             sort: 'relevance',
-            format: 'json'
+            format: 'json',
+            cache: false
+
         },
 
         success: function (result) {
