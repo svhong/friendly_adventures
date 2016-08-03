@@ -76,7 +76,8 @@ function createDomPage1(){
     var choiceArray = ['Male', 'Female', 'Surprise Me'];
     for (var i = 0; i < choiceArray.length; i++){
         $('<div>').text(choiceArray[i])
-            .addClass('col-sm-12 dateChoices').click(function(){selectedGender();}).appendTo('.main');
+            .addClass('col-sm-12 dateChoices').click(selectedGender).appendTo('.main');
+
     }
 }
 
