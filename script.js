@@ -199,10 +199,14 @@ function getPersonImages() {
         format: 'json',
         cache: false
     };
-    if (genderSelect != 'Shiba') {
-        dataObj.text = genderSelect + " portrait single adult";
-    } else{
-        dataObj.text = genderSelect + " dog closeup";
+    if (genderSelect == 'Shiba') {
+        dataObj.text = genderSelect + " dog, closeup";
+
+    } else if (genderSelect == 'Male'){
+        dataObj.text = genderSelect + " portrait, man";
+    }
+else{
+        dataObj.text = genderSelect + " portrait, woman";
     }
     $.ajax({
         url: 'https://api.flickr.com/services/rest',
