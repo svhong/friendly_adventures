@@ -405,10 +405,10 @@ function createDomPage5() {
 
 
     var appendHere1 = $('#final_1').parent();
-    $('<div>').addClass('nameContainers').text(redefinedEventList[i].name).appendTo(appendHere1);
+    $('<div>').addClass('nameContainers').text(finalEvent.name).appendTo(appendHere1);
 
     $('#final_1').css('background-image', 'url('+finalEvent.photos[0].getUrl({maxWidth:1000, maxHeight:1000})+')');
-    $('<div>').addClass('nameContainers').text(redefinedEventList[i].name).appendTo('#final_1');
+    $('<div>').addClass('nameContainers').text(finalEvent.name).appendTo('#final_1');
 
     var appendHere0 = $('#final_0').parent();
     $('<div>').addClass('nameContainers').text(finalDate.image).appendTo(appendHere0);
