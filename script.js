@@ -215,7 +215,7 @@ function getPersonImages() {
         dataObj.text = genderSelect + " dog, closeup";
 
     } else if (genderSelect == 'Male'){
-        dataObj.text = genderSelect + " portrait, man";
+        dataObj.text = genderSelect + " portrait, sexy, man";
     }
 else{
         dataObj.text = genderSelect + " portrait, woman";
