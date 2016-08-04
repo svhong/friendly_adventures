@@ -359,6 +359,13 @@ function createDomPage5() {
         $(finalDiv).append(finalDivContainer);
         navigator.geolocation.getCurrentPosition(initialize);
     }
+
+    $('#final_1').css(
+        'background-image', 'url('+finalEvent.photos[0].getUrl({maxWidth:1000, maxHeight:1000})+')'
+    );
+    $('<div>').addClass('nameContainers').text(redefinedEventList[i].name).appendTo('#final_1');
+    
+
 }
 
 
@@ -373,6 +380,8 @@ function initialize(location) {
         ['My Destination - Test', 33.6501, -117.7436, 2]
     ];
 
+    var myCenter = [];
+    
     var map = new google.maps.Map(document.getElementById('final_2'), {
         zoom: 12,
         center: new google.maps.LatLng(currentLocation.lat, currentLocation.long),
