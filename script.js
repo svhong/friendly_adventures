@@ -211,10 +211,14 @@ function getPersonImages() {
         format: 'json',
         cache: false
     };
-    if (genderSelect != 'Shiba') {
-        dataObj.text = genderSelect + " portrait single adult";
-    } else{
-        dataObj.text = genderSelect + " dog closeup";
+    if (genderSelect == 'Shiba') {
+        dataObj.text = genderSelect + " dog, closeup";
+
+    } else if (genderSelect == 'Male'){
+        dataObj.text = genderSelect + " portrait, man";
+    }
+else{
+        dataObj.text = genderSelect + " portrait, woman";
     }
     $.ajax({
         url: 'https://api.flickr.com/services/rest',
@@ -250,7 +254,7 @@ function getPersonImages() {
 function clickDateBtns(dateBtnDiv) {
     clearMain();
     //save the img and name of clicked item for final page
-    finalDate.image = $(this).find('.nameContainers.text');
+    finalDate.image = $(this).text();
     finalDate.name = $(this).find('img').attr('src');
 
 
@@ -386,23 +390,26 @@ function clickEventBtns(imgElement) {
 
 
 function createDomPage5() {
-    for (var i = 0; i < 4; i++) {
+    for (var i = 0; i < 3; i++) {
         var finalDiv = $('<div>').addClass('finalBtns col-xs-6 col-sm-6');
         $('.main').append(finalDiv);
         var finalDivContainer = $('<div>').addClass('finalDivContainer').text(i + 1).attr('id', 'final_' + i);
         $(finalDiv).append(finalDivContainer);
         navigator.geolocation.getCurrentPosition(initialize);
     }
+    var appendHere1 = $('#final_1').parent();
+    $('<div>').addClass('nameContainers').text(redefinedEventList[i].name).appendTo(appendHere1);
 
-    $('#final_1').css(
-        'background-image', 'url('+finalEvent.photos[0].getUrl({maxWidth:1000, maxHeight:1000})+')'
-    );
-    var appendHere = $('#final_1').parent();
-    $('<div>').addClass('nameContainers').text(redefinedEventList[i].name).appendTo(appendHere);
+    $('#final_1').css('background-image', 'url('+finalEvent.photos[0].getUrl({maxWidth:1000, maxHeight:1000})+')');
+    $('<div>').addClass('nameContainers').text(redefinedEventList[i].name).appendTo('#final_1');
+
+    var appendHere0 = $('#final_0').parent();
+    $('<div>').addClass('nameContainers').text(finalDate.image).appendTo(appendHere0);
+
+    $('#final_0').css('background-image', 'url('+ finalDate.name+')');
+    $('<div>').addClass('nameContainers').text(finalDate.image).appendTo('#final_0');
     
-
 }
-
 
 //Getting google maps for the locations
 function initialize(location) {
@@ -452,15 +459,3 @@ function createSpinner (){
         'height': '60vh'
     })
 }
-
-
-
-
-
-
-
-
-
-
-
-
