@@ -90,3 +90,15 @@ h1 {
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+.dateChoicesContainer {
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position: center;
+}
+
+.dateChoices:hover .nameContainers {
+    transform: translateY(0%);
+    opacity: 1;
+    transition-duration: 0.5s;
+}
