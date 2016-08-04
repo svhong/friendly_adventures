@@ -238,7 +238,7 @@ function getPersonImages() {
 function clickDateBtns(dateBtnDiv) {
     clearMain();
     //save the img and name of clicked item for final page
-    finalDate.image = $(this).find('.nameContainers.text');
+    finalDate.image = $(this).text();
     finalDate.name = $(this).find('img').attr('src');
 
 
@@ -370,7 +370,12 @@ function createDomPage5() {
         'background-image', 'url('+finalEvent.photos[0].getUrl({maxWidth:1000, maxHeight:1000})+')'
     );
     $('<div>').addClass('nameContainers').text(redefinedEventList[i].name).appendTo('#final_1');
-    
+
+    $('#final_0').css(
+        'background-image', 'url('+ finalDate.name+')'
+    );
+    $('<div>').addClass('nameContainers').text(finalDate.image).appendTo('#final_0');
+
 
 }
 
