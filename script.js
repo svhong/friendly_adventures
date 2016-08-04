@@ -393,7 +393,7 @@ function createDomPage5() {
     for (var i = 0; i < 3; i++) {
         var finalDiv = $('<div>').addClass('finalBtns col-xs-6 col-sm-6');
         $('.main').append(finalDiv);
-        var finalDivContainer = $('<div>').addClass('finalDivContainer').text(i + 1).attr('id', 'final_' + i);
+        var finalDivContainer = $('<div>').addClass('finalDivContainer').attr('id', 'final_' + i);
         $(finalDiv).append(finalDivContainer);
         navigator.geolocation.getCurrentPosition(initialize);
     }
