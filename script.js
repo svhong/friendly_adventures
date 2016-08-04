@@ -415,6 +415,7 @@ function createDomPage5() {
 function initialize(location) {
     console.log(location);
     var shibaImage = 'http://orig15.deviantart.net/fb18/f/2011/220/0/e/pixel_shiba_inu_by_babiry-d45xejf.gif';
+    var heartImage = 'http://msnsmileys.net/H/Hearts/animated-heart.gif';
     var currentLocation = locObj.getLocation();
 
     var lat = finalEvent.geometry.location.lat();
@@ -439,10 +440,20 @@ function initialize(location) {
     var marker, i;
 
     for (i = 0; i < locations.length; i++) {
+
+        var myImage = '';
+
+        if (i === 0){
+            myImage = shibaImage;
+        }else{
+            myImage = heartImage;
+        }
+
         marker = new google.maps.Marker({
-            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+            position: new google.maps.LatLng(locations[i][1], locagitions[i][2]),
             map: map,
-            icon: shibaImage
+            icon: myImage,
+            animation:google.maps.Animation.BOUNCE
         });
 
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
