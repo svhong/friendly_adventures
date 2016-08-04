@@ -270,10 +270,26 @@ function createDomPage3() {
         var textContainer = $('<div>').addClass('nameContainers').text(api_call_keywords[i]);
         var eventContainer = $('<div>').addClass('eventContainers box' + i);
         eventDiv.append(eventContainer,textContainer).appendTo($('.main'));
-        // if ($('.eventContainers').hasClass('box5')) {
-        //     $('.box5').text('SURPRISE ME!')
-        // }
     }
+    if ($('.eventContainers').hasClass('box0')) {
+        $('.box0').css('background-image','url(images/restaurant.png)');
+    }
+    if ($('.eventContainers').hasClass('box1')) {
+        $('.box1').css('background-image','url(images/cafe.png)');
+    }
+    if ($('.eventContainers').hasClass('box2')) {
+        $('.box2').css('background-image','url(images/park.png)');
+    }
+    if ($('.eventContainers').hasClass('box3')) {
+        $('.box3').css('background-image','url(images/movie.png)');
+    }
+    if ($('.eventContainers').hasClass('box4')) {
+        $('.box4').css('background-image','url(images/club.png)');
+    }
+    if ($('.eventContainers').hasClass('box5')) {
+        $('.box5').css('background-image','url(images/shopping.png)');
+    }
+
 }
 
 function clickeventChoices(clickedElement) {

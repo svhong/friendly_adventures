@@ -112,3 +112,9 @@ h1 {
     opacity: 1;
     transition-duration: 0.5s;
 }
+
+.eventContainers {
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position: center;
+}
