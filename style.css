@@ -1,5 +1,7 @@
+
 body {
     background-color: #ffffff;
+    font-family:'Roboto', sans-serif;
 }
 
 .header {
@@ -7,9 +9,12 @@ body {
     background-color: #b71c1c;
     color: #ffffff;
     box-shadow: 0 10px 6px -6px gray;
+    font-family:'Roboto', sans-serif;
 }
 
-
+h1 {
+    font-family:'Roboto', sans-serif;
+}
 /*Page 1*/
 
 /*Page 2*/

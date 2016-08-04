@@ -8,6 +8,8 @@ var map;
 var myAddressString = '';
 var getPersonImagesArray = [];
 var getNamesArray = [];
+var finalDate = {};
+
 
 function LocationObj(successCallback, errorCallback) {
     this.success = successCallback;
@@ -156,8 +158,7 @@ function geocodeAddress() {
 
 function createDomPage2() {
     for (var i = 0; i < 6; i++) {
-        var dateDiv = $('<div>').addClass('dateBtns col-sm-4 col-xs-6');
-        $(dateDiv).click(clickDateBtns);
+        var dateDiv = $('<div>').addClass('dateBtns col-sm-4 col-xs-6').click(clickDateBtns);
         $('.main').append(dateDiv);
         var dateContainer = $('<div>').addClass('dateContainers').attr('id', 'second' + i);
         $(dateContainer).append(getPersonImagesArray[i]);
@@ -211,7 +212,7 @@ function getPersonImages() {
         cache: false
     };
     if (genderSelect != 'Shiba') {
-        dataObj.text = genderSelect + " person closeup";
+        dataObj.text = genderSelect + " portrait single adult";
     } else{
         dataObj.text = genderSelect + " dog closeup";
     }
@@ -246,10 +247,15 @@ function getPersonImages() {
     })
 }
 
-function clickDateBtns() {
+function clickDateBtns(dateBtnDiv) {
     clearMain();
-    //save the img and name of clicked item
+    //save the img and name of clicked item for final page
+    finalDate.image = $(this).find('.nameContainers.text');
+    finalDate.name = $(this).find('img').attr('src');
+
+
     createDomPage3();
+    console.log(finalDate);
 }
 
 
@@ -371,6 +377,13 @@ function createDomPage5() {
         $(finalDiv).append(finalDivContainer);
         navigator.geolocation.getCurrentPosition(initialize);
     }
+
+    $('#final_1').css(
+        'background-image', 'url('+finalEvent.photos[0].getUrl({maxWidth:1000, maxHeight:1000})+')'
+    );
+    $('<div>').addClass('nameContainers').text(redefinedEventList[i].name).appendTo('#final_1');
+    
+
 }
 
 
@@ -385,6 +398,8 @@ function initialize(location) {
         ['My Destination - Test', 33.6501, -117.7436, 2]
     ];
 
+    var myCenter = [];
+    
     var map = new google.maps.Map(document.getElementById('final_2'), {
         zoom: 12,
         center: new google.maps.LatLng(currentLocation.lat, currentLocation.long),
