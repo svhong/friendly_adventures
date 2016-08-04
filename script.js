@@ -391,12 +391,19 @@ function clickEventBtns(imgElement) {
 
 function createDomPage5() {
     for (var i = 0; i < 3; i++) {
-        var finalDiv = $('<div>').addClass('finalBtns col-xs-6 col-sm-6');
+        if (i<2) {
+            var finalDiv = $('<div>').addClass('finalBtns col-xs-6 col-sm-6');
+        }
+        else {
+            var finalDiv = $('<div>').addClass('finalBtns col-xs-6 col-sm-12');
+        }
         $('.main').append(finalDiv);
         var finalDivContainer = $('<div>').addClass('finalDivContainer').text(i + 1).attr('id', 'final_' + i);
         $(finalDiv).append(finalDivContainer);
         navigator.geolocation.getCurrentPosition(initialize);
     }
+
+
     var appendHere1 = $('#final_1').parent();
     $('<div>').addClass('nameContainers').text(redefinedEventList[i].name).appendTo(appendHere1);
 
