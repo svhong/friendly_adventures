@@ -42,6 +42,16 @@ h1 {
 .finalBtns {
 
 }
+.finalBtns:hover .nameContainers{
+    transform: translateY(0%);
+    opacity: 1;
+    transition-duration:0.5s;
+}
+.finalDivContainer{
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position: center;
+}
 /*#final_2 {*/
     /*height: 500px;*/
     /*width: 300px;*/
@@ -89,4 +99,16 @@ h1 {
 .dateContainers {
     background-size: cover;
     background-repeat: no-repeat;
+}
+
+.dateChoicesContainer {
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position: center;
+}
+
+.dateChoices:hover .nameContainers {
+    transform: translateY(0%);
+    opacity: 1;
+    transition-duration: 0.5s;
 }

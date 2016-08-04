@@ -84,9 +84,21 @@ function createDomPage1() {
 
         var dateChoices = $('<div>').addClass('col-sm-4 dateChoices').click(genderClicked).attr('gender', choiceIDArray[i]);
         $('.main').append(dateChoices);
-        var dateChoicesContainer = $('<div>').addClass('dateChoicesContainer');
-        $(dateChoices).append(dateChoicesContainer);
-
+        var dateSelect = $('<div>').addClass('nameContainers doggy' + i).text(choiceIDArray[i]);
+        var dateChoicesContainer = $('<div>').addClass('dateChoicesContainer choice' + i);
+        $(dateChoices).append(dateChoicesContainer, dateSelect);
+    }
+    if ($('.dateChoicesContainer').hasClass('choice0') == true){
+        $('.choice0').css('background-image','url(images/male.png)');
+    }
+    if ($('.dateChoicesContainer').hasClass('choice1') == true){
+        $('.choice1').css('background-image','url(images/female.png)');
+    }
+    if ($('.dateChoicesContainer').hasClass('choice2') == true){
+        $('.choice2').css('background-image','url(images/surprise.png)');
+    }
+    if ($('.nameContainers').hasClass('doggy2')){
+        $('.doggy2').text('SURPRISE ME!')
     }
 }
 
@@ -365,20 +377,19 @@ function createDomPage5() {
         $(finalDiv).append(finalDivContainer);
         navigator.geolocation.getCurrentPosition(initialize);
     }
+    var appendHere1 = $('#final_1').parent();
+    $('<div>').addClass('nameContainers').text(redefinedEventList[i].name).appendTo(appendHere1);
 
-    $('#final_1').css(
-        'background-image', 'url('+finalEvent.photos[0].getUrl({maxWidth:1000, maxHeight:1000})+')'
-    );
+    $('#final_1').css('background-image', 'url('+finalEvent.photos[0].getUrl({maxWidth:1000, maxHeight:1000})+')');
     $('<div>').addClass('nameContainers').text(redefinedEventList[i].name).appendTo('#final_1');
 
-    $('#final_0').css(
-        'background-image', 'url('+ finalDate.name+')'
-    );
+    var appendHere0 = $('#final_0').parent();
+    $('<div>').addClass('nameContainers').text(finalDate.image).appendTo(appendHere0);
+
+    $('#final_0').css('background-image', 'url('+ finalDate.name+')');
     $('<div>').addClass('nameContainers').text(finalDate.image).appendTo('#final_0');
-
-
+    
 }
-
 
 //Getting google maps for the locations
 function initialize(location) {
