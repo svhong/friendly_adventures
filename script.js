@@ -424,10 +424,13 @@ function initialize(location) {
         ['My Location', currentLocation.lat, currentLocation.long, 1],
         [finalEvent.name, lat, long, 2]
     ];
-    
+
+    var centerLocationLat = (currentLocation.lat + lat) /2;
+    var centerLocationLong = (currentLocation.long + long) /2;
+
     var map = new google.maps.Map(document.getElementById('final_2'), {
         zoom: 12,
-        center: new google.maps.LatLng(currentLocation.lat, currentLocation.long),
+        center: new google.maps.LatLng(centerLocationLat, centerLocationLong),
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
 
