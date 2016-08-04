@@ -82,12 +82,21 @@ function createDomPage1() {
 
         var dateChoices = $('<div>').addClass('col-sm-4 dateChoices').click(genderClicked).attr('gender', choiceIDArray[i]);
         $('.main').append(dateChoices);
+        var dateSelect = $('<div>').addClass('nameContainers doggy' + i).text(choiceIDArray[i]);
         var dateChoicesContainer = $('<div>').addClass('dateChoicesContainer choice' + i);
-        if ($('.dateChoicesContainer').hasClass('choice0')){
-            $('.dateChoicesContainer').css('background-image','url(images/male.png)');
-        }
-        $(dateChoices).append(dateChoicesContainer);
-
+        $(dateChoices).append(dateChoicesContainer, dateSelect);
+    }
+    if ($('.dateChoicesContainer').hasClass('choice0') == true){
+        $('.choice0').css('background-image','url(images/male.png)');
+    }
+    if ($('.dateChoicesContainer').hasClass('choice1') == true){
+        $('.choice1').css('background-image','url(images/female.png)');
+    }
+    if ($('.dateChoicesContainer').hasClass('choice2') == true){
+        $('.choice2').css('background-image','url(images/surprise.png)');
+    }
+    if ($('.nameContainers').hasClass('doggy2')){
+        $('.doggy2').text('SURPRISE ME!')
     }
 }
 
