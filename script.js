@@ -395,7 +395,7 @@ function createDomPage5() {
             var finalDiv = $('<div>').addClass('finalBtns col-xs-6 col-sm-6');
         }
         else {
-            var finalDiv = $('<div>').addClass('finalBtns col-xs-6 col-sm-12');
+            var finalDiv = $('<div>').addClass('finalBtns col-xs-12 col-sm-12');
         }
         $('.main').append(finalDiv);
         var finalDivContainer = $('<div>').addClass('finalDivContainer').attr('id', 'final_' + i);
