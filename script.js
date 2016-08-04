@@ -417,12 +417,13 @@ function initialize(location) {
     var shibaImage = 'http://orig15.deviantart.net/fb18/f/2011/220/0/e/pixel_shiba_inu_by_babiry-d45xejf.gif';
     var currentLocation = locObj.getLocation();
 
+    var lat = finalEvent.geometry.location.lat();
+    var long = finalEvent.geometry.location.lng();
+
     var locations = [
         ['My Location', currentLocation.lat, currentLocation.long, 1],
-        ['My Destination - Test', 33.6501, -117.7436, 2]
+        [finalEvent.name, lat, long, 2]
     ];
-
-    var myCenter = [];
     
     var map = new google.maps.Map(document.getElementById('final_2'), {
         zoom: 12,
