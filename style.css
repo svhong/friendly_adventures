@@ -112,3 +112,8 @@ h1 {
     opacity: 1;
     transition-duration: 0.5s;
 }
+#final_2 {
+    width: 150%;
+    height: 100%;
+    margin-left: 30%;
+}
