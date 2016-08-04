@@ -457,7 +457,7 @@ function initialize(location) {
         }
 
         marker = new google.maps.Marker({
-            position: new google.maps.LatLng(locations[i][1], locagitions[i][2]),
+            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
             map: map,
             icon: myImage,
             animation:google.maps.Animation.BOUNCE
