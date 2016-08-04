@@ -363,7 +363,8 @@ function createDomPage5() {
     $('#final_1').css(
         'background-image', 'url('+finalEvent.photos[0].getUrl({maxWidth:1000, maxHeight:1000})+')'
     );
-    $('<div>').addClass('nameContainers').text(redefinedEventList[i].name).appendTo('#final_1');
+    var appendHere = $('#final_1').parent();
+    $('<div>').addClass('nameContainers').text(redefinedEventList[i].name).appendTo(appendHere);
     
 
 }
